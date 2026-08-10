@@ -1,0 +1,64 @@
+---
+const sources = [
+  {
+    text: 'MIT Technology Review, ',
+    em: 'Power Hungry: AI and our energy future',
+    tail: ', mei 2025 — ',
+    href: 'https://www.technologyreview.com',
+    label: 'technologyreview.com',
+  },
+  {
+    text: 'Lawrence Berkeley National Laboratory, ',
+    em: 'United States Data Center Energy Usage Report',
+    tail: ', december 2024 — ',
+    href: 'https://eta.lbl.gov',
+    label: 'eta.lbl.gov',
+  },
+  {
+    text: 'ML.Energy leaderboard, Universiteit van Michigan — ',
+    em: '',
+    tail: '',
+    href: 'https://ml.energy',
+    label: 'ml.energy',
+  },
+  {
+    text: 'AI Energy Score, Hugging Face en Salesforce — ',
+    em: '',
+    tail: '',
+    href: 'https://huggingface.co',
+    label: 'huggingface.co',
+  },
+];
+---
+
+<section id="bronnen" aria-label="Wie hier achter staat" class="section-wrap py-[clamp(56px,10vw,96px)]">
+  <h2 class="h2-title mt-0 mb-[26px]">Wie hier achter staat</h2>
+
+  <p class="mt-0 mb-9 body-text">
+    Deze oproep komt van The AI Footprint Meter — een onafhankelijk initiatief van mensen die willen
+    dat AI-gebruik net zo meetbaar wordt als elk ander stroomverbruik.
+  </p>
+
+  <div class="label-caps mb-3.5 text-muted">Bronnen</div>
+  <ul class="mt-0 mb-7 list-disc pl-5 text-[15px] leading-relaxed text-muted">
+    {
+      sources.map((source, index) => (
+        <li class={index === sources.length - 1 ? '' : 'mb-2'}>
+          {source.text}
+          {source.em && <em>{source.em}</em>}
+          {source.tail}
+          <a href={source.href} target="_blank" rel="noopener">
+            {source.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="m-0 text-[14px] leading-[1.5] text-muted">
+    Alle cijfers op deze pagina zijn na te rekenen. Klopt er iets niet? <a
+      href="mailto:mrtijn@proton.me"
+      class="text-[14px]">mrtijn@proton.me</a
+    >
+  </p>
+</section>

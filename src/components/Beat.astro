@@ -1,0 +1,13 @@
+---
+interface Props {
+  label?: string;
+}
+const { label = 'Tussenzin' } = Astro.props;
+---
+
+<section
+  aria-label={label}
+  class="section-wrap flex min-h-[38vh] items-center justify-start py-6"
+>
+  <p class="beat-text m-0 max-w-[66ch]"><slot /></p>
+</section>

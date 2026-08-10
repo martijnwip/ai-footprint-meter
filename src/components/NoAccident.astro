@@ -1,0 +1,50 @@
+---
+const quotes = [
+  {
+    text: '"De aanbieders van gesloten AI-modellen serveren een volledige zwarte doos."',
+    source: '— Boris Gamazaychikov, Salesforce',
+  },
+  {
+    text: '"We moeten ophouden met het terugrekenen van getallen op basis van geruchten, en meer druk zetten op deze bedrijven om de echte cijfers te delen."',
+    source: '— Sasha Luccioni, Hugging Face',
+  },
+];
+---
+
+<section aria-label="Geen toeval" class="section-wrap py-[clamp(56px,10vw,96px)]">
+  <h2 class="h2-title mt-0 mb-[26px]">Je weet het niet. En dat is geen toeval.</h2>
+
+  <p class="mt-0 mb-[22px] body-text">
+    De cijfers hierboven komen uit metingen aan open modellen — software die onderzoekers zelf kunnen
+    downloaden en doormeten.
+  </p>
+  <p class="mt-0 mb-[22px] body-text">
+    De chatbots die honderden miljoenen mensen dagelijks gebruiken zijn niet open. ChatGPT, Claude,
+    Gemini en Grok geven geen cijfers. Niet aan gebruikers, niet aan toezichthouders, niet aan
+    onderzoekers.
+  </p>
+  <p class="mt-0 mb-8 body-text">
+    MIT Technology Review vroeg het OpenAI, Google en Microsoft rechtstreeks. Alle drie weigerden
+    getallen te geven.
+  </p>
+
+  {
+    quotes.map((quote, index) => (
+      <blockquote class={`m-0 border-l-2 border-line pl-5 ${index === quotes.length - 1 ? 'mb-8' : 'mb-[22px]'}`}>
+        <p class="mt-0 mb-2 text-[20px] leading-[1.5] italic">{quote.text}</p>
+        <p class="m-0 text-[14px] text-muted">{quote.source}</p>
+      </blockquote>
+    ))
+  }
+
+  <p class="mt-0 mb-[22px] body-text">
+    Het Lawrence Berkeley National Laboratory, dat in opdracht van het Amerikaanse energieministerie
+    de vraag naar stroom voorspelt, kwam tot dezelfde conclusie: er wordt zo weinig vrijgegeven dat
+    een fatsoenlijke prognose niet te maken is. Datacenters worden gebouwd zonder dat iemand kan
+    berekenen wat ze het stroomnet gaan kosten.
+  </p>
+  <p class="m-0 body-text">
+    Dit is geen technisch probleem. De bedrijven meten dit intern tot op de kilowattuur nauwkeurig —
+    ze moeten de rekening zelf betalen. Ze publiceren het alleen niet.
+  </p>
+</section>

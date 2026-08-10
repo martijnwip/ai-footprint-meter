@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import StickyBar from '../components/StickyBar.astro';
+---
+
+<Base
+  title="Privacyverklaring — The AI Footprint Meter"
+  description="Wat er met je gegevens gebeurt als je deze oproep tekent."
+>
+  <StickyBar />
+
+  <main class="section-wrap py-[clamp(72px,12vw,120px)]">
+    <h1 class="mt-0 mb-8 text-[clamp(26px,4.6vw,34px)] leading-[1.18] font-bold">
+      Privacyverklaring
+    </h1>
+
+    <p class="mt-0 mb-6 body-text">
+      [CONCEPT — laat dit nakijken voordat de pagina live gaat.]
+    </p>
+
+    <h2 class="h2-title mt-10 mb-4">Wat wordt er opgeslagen</h2>
+    <ul class="mt-0 mb-6 list-disc pl-[22px] body-text">
+      <li class="mb-2.5">Je naam, zoals je die zelf invult</li>
+      <li class="mb-2.5">Je e-mailadres</li>
+      <li class="mb-2.5">Of je op de hoogte gehouden wil worden</li>
+      <li class="mb-2.5">Het moment van tekenen en bevestigen</li>
+      <li>
+        Een versleutelde afdruk van je IP-adres en je browsertype, alleen om misbruik te herkennen
+      </li>
+    </ul>
+
+    <h2 class="h2-title mt-10 mb-4">Waar het staat</h2>
+    <p class="mt-0 mb-6 body-text">
+      In een database bij Supabase, regio Frankfurt. De pagina zelf draait bij Vercel; het
+      formulierendpoint staat in Frankfurt. De bevestigingsmail gaat via Brevo, een Franse
+      aanbieder.
+    </p>
+
+    <h2 class="h2-title mt-10 mb-4">Waarvoor het gebruikt wordt</h2>
+    <p class="mt-0 mb-6 body-text">
+      Alleen voor deze oproep: je handtekening meetellen, je naam meesturen naar de aanbieders en de
+      Europese instellingen, en je op de hoogte houden als je dat hebt aangevinkt. Niets wordt
+      gedeeld met of verkocht aan derden.
+    </p>
+
+    <h2 class="h2-title mt-10 mb-4">Hoe lang</h2>
+    <p class="mt-0 mb-6 body-text">
+      Handtekeningen blijven staan tot de oproep is afgerond. Wie niet bevestigt, wordt na 48 uur
+      verwijderd.
+    </p>
+
+    <h2 class="h2-title mt-10 mb-4">Weghalen</h2>
+    <p class="mt-0 mb-6 body-text">
+      Eén mail naar <a href="mailto:mrtijn@proton.me">mrtijn@proton.me</a> is genoeg. Je gegevens
+      worden dan verwijderd.
+    </p>
+
+    <p class="mt-10 mb-0"><a href="/">Terug naar de pagina</a></p>
+  </main>
+</Base>

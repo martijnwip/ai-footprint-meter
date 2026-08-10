@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* Tokens, één op één overgenomen uit design.html.
+   Geen webfonts: de systeemstack uit het ontwerp kost nul bytes. */
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  --color-paper: #faf9f5;
+  --color-card: #ffffff;
+  --color-ink: #1c1c1a;
+  --color-ink-hover: #3a3a36;
+  --color-muted: #6e6e68;
+  --color-line: #e6e3da;
+  --color-accent: #3f6b47;
+  --color-accent-mid: #7fa07e;
+  --color-accent-soft: #c6d6c2;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+@layer base {
+  a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-soft);
+  }
+
+  a:hover {
+    color: var(--color-ink);
+    text-decoration-color: var(--color-ink);
+  }
+}
+
+::selection {
+  background: var(--color-accent-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+/* Terugkerende maten uit het ontwerp */
+@utility section-wrap {
+  max-inline-size: 820px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+@utility hero-wrap {
+  max-inline-size: 868px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+@utility body-text {
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+@utility h2-title {
+  font-size: clamp(21px, 3.6vw, 25px);
+  line-height: 1.28;
+  font-weight: 700;
+}
+
+@utility beat-text {
+  font-size: clamp(26px, 4.6vw, 34px);
+  line-height: 1.18;
+  font-weight: 700;
+}
+
+@utility btn-dark {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+
+@utility label-caps {
+  font-size: 12px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-weight: 700;
+}

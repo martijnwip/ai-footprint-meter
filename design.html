@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { -webkit-font-smoothing: antialiased; text-wrap: pretty; }
+  a { color: #3F6B47; text-decoration: underline; text-decoration-color: #C6D6C2; }
+  a:hover { color: #1C1C1A; text-decoration-color: #1C1C1A; }
+  ::selection { background: #C6D6C2; }
+</style>
+</helmet>
+
+<div style="background:#FAF9F5;color:#1C1C1A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;min-height:100vh;position:relative;">
+
+  <div style="{{ stickyBarStyle }}">The AI Footprint Meter</div>
+
+  <!-- SECTION 1 — HERO -->
+  <section aria-label="Introductie" data-screen-label="01" style="padding:clamp(72px,14vw,140px) 24px clamp(16px,3vw,24px);max-width:868px;margin:0 auto;">
+    <h1 style="font-size:clamp(30px,6.2vw,46px);line-height:1.1;letter-spacing:-0.025em;font-weight:700;margin:0 0 24px;text-align:left;max-width:820px;">Je wasmachine heeft een energielabel. Je AI-chat niet.</h1>
+    <p style="font-size:20px;line-height:1.55;color:#6E6E68;margin:0 0 40px;max-width:66ch;">Wij vragen de Europese Unie om AI-aanbieders te verplichten het energieverbruik van elk antwoord te tonen. In de app. Op het moment zelf.</p>
+    <button style="background:#1C1C1A;color:#FAF9F5;border:none;font-size:16px;font-weight:600;padding:15px 28px;border-radius:4px;cursor:pointer;" style-hover="background:#3a3a36" style-focus="outline:2px solid #1C1C1A;outline-offset:3px" onClick="{{ scrollToForm }}">Teken de oproep</button>
+
+    <div ref="{{ meterCardRef }}" style="margin-top:clamp(56px,9vw,88px);">
+      <div style="background:#FFFFFF;border:1px solid #E6E3DA;border-radius:6px;padding:clamp(20px,3.4vw,32px);max-width:640px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
+          <span style="font-size:12px;letter-spacing:0.13em;text-transform:uppercase;font-weight:700;color:#1C1C1A;">Gespreksverbruik</span>
+          <span style="font-size:13px;color:#6E6E68;">24 berichten · sinds 20:02</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;">
+          <span style="font-size:clamp(38px,7vw,52px);line-height:1;font-weight:700;color:#3F6B47;">2,9</span>
+          <span style="font-size:18px;font-weight:600;color:#3F6B47;">kWh</span>
+        </div>
+        <p style="font-size:14px;color:#6E6E68;margin:0 0 18px;">deze avond, tot nu toe</p>
+
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;">
+            <span style="width:9px;height:9px;background:#C6D6C2;flex-shrink:0;"></span>
+            <span style="flex:1;">15 tekstvragen</span>
+            <span style="color:#6E6E68;font-size:14px;">0,01 kWh (0,3%)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;">
+            <span style="width:9px;height:9px;background:#7FA07E;flex-shrink:0;"></span>
+            <span style="flex:1;">3 flyerafbeeldingen</span>
+            <span style="color:#6E6E68;font-size:14px;">0,15 kWh (5%)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;">
+            <span style="width:9px;height:9px;background:#3F6B47;flex-shrink:0;"></span>
+            <span style="flex:1;">1 video van 5 seconden</span>
+            <span style="color:#6E6E68;font-size:14px;">2,74 kWh (95%)</span>
+          </div>
+        </div>
+
+        <p style="font-size:13px;letter-spacing:0.02em;color:#6E6E68;margin:0 0 12px;">Ongeveer gelijk aan</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;">
+          <div style="flex:1;min-width:140px;background:#FAF9F5;border-radius:5px;padding:14px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F6B47" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="13" r="5"/><circle cx="12" cy="13" r="1.4"/><line x1="8" y1="6" x2="10" y2="6"/></svg>
+            <div style="font-size:22px;font-weight:700;margin:10px 0 2px;">3×</div>
+            <div style="font-size:13px;color:#6E6E68;">wasmachine op 40°C</div>
+          </div>
+          <div style="flex:1;min-width:140px;background:#FAF9F5;border-radius:5px;padding:14px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F6B47" stroke-width="1.6"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><rect x="3" y="16" width="18" height="4" rx="1"/><circle cx="7.5" cy="20" r="1.3"/><circle cx="16.5" cy="20" r="1.3"/></svg>
+            <div style="font-size:22px;font-weight:700;margin:10px 0 2px;">15 km</div>
+            <div style="font-size:13px;color:#6E6E68;">rijden, elektrische auto</div>
+          </div>
+          <div style="flex:1;min-width:140px;background:#FAF9F5;border-radius:5px;padding:14px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F6B47" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="1.5"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="9" y1="5" x2="9" y2="7"/><line x1="9" y1="13" x2="9" y2="15"/></svg>
+            <div style="font-size:22px;font-weight:700;margin:10px 0 2px;">2 dagen</div>
+            <div style="font-size:13px;color:#6E6E68;">koelkast aan</div>
+          </div>
+        </div>
+
+      </div>
+      <p style="font-size:18px;font-weight:600;color:#1C1C1A;margin:36px 0 0;">Zo zou dat eruit kunnen zien.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 1b — IN CONTEXT -->
+  <section aria-label="In de chat zelf" data-screen-label="01b" style="padding:0 24px clamp(56px,10vw,96px);max-width:868px;margin:0 auto;">
+    <p style="font-size:14px;color:#6E6E68;margin:0 0 18px;">Zo ziet dat eruit in de chat zelf</p>
+    <div style="overflow-x:auto;">
+    <div style="display:flex;min-width:760px;height:600px;border:1px solid #E6E3DA;border-radius:8px;background:#FFFFFF;overflow:hidden;">
+      <div style="width:190px;flex-shrink:0;border-right:1px solid #E6E3DA;padding:20px 16px;display:flex;flex-direction:column;">
+        <div style="font-size:15px;font-weight:700;margin-bottom:18px;">verda</div>
+        <div style="background:#1C1C1A;color:#FAF9F5;font-size:13px;font-weight:600;border-radius:5px;padding:9px 12px;margin-bottom:20px;">+ Nieuwe chat</div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6E6E68;margin-bottom:10px;">Recent</div>
+        <div style="background:#FAF9F5;border-radius:5px;padding:8px 10px;margin-bottom:6px;">
+          <div style="font-size:13px;font-weight:600;">Sponsoractie halve marathon</div>
+          <div style="font-size:12px;color:#3F6B47;margin-top:2px;">2,9 kWh</div>
+        </div>
+        <div style="padding:8px 10px;">
+          <div style="font-size:13px;color:#1C1C1A;">Teamuitje ideeën</div>
+          <div style="font-size:12px;color:#6E6E68;margin-top:2px;">0,4 kWh</div>
+        </div>
+      </div>
+      <div style="flex:1;padding:24px 28px;overflow-y:auto;">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:18px;">
+          <div style="background:#1C1C1A;color:#FAF9F5;font-size:14px;line-height:1.5;border-radius:6px;padding:10px 14px;max-width:340px;">Maak een filmpje van 5 seconden van de flyer voor Instagram Stories.</div>
+        </div>
+        <p style="font-size:14px;line-height:1.6;color:#1C1C1A;margin:0 0 14px;">Klaar — hier is een clip van 5 seconden, 1080×1920.</p>
+        <div style="display:flex;align-items:center;gap:12px;border:1px solid #E6E3DA;border-radius:6px;padding:12px 14px;max-width:280px;margin-bottom:22px;">
+          <span style="width:32px;height:32px;border-radius:50%;background:#1C1C1A;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#FAF9F5"><polygon points="5,3 21,12 5,21"/></svg>
+          </span>
+          <div>
+            <div style="font-size:13px;font-weight:600;">Sponsorflyer — Stories</div>
+            <div style="font-size:12px;color:#6E6E68;">5s · 1080×1920</div>
+          </div>
+        </div>
+
+        <div style="border:1px solid #E6E3DA;border-radius:6px;padding:20px;max-width:420px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+            <span style="font-size:11px;letter-spacing:0.13em;text-transform:uppercase;font-weight:700;">Gespreksverbruik</span>
+            <span style="font-size:12px;color:#6E6E68;">24 berichten</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;">
+            <span style="font-size:34px;line-height:1;font-weight:700;color:#3F6B47;">2,9</span>
+            <span style="font-size:15px;font-weight:600;color:#3F6B47;">kWh</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span style="width:8px;height:8px;background:#C6D6C2;flex-shrink:0;"></span>
+              <span style="flex:1;">15 tekstvragen</span><span style="color:#6E6E68;">0,3%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span style="width:8px;height:8px;background:#7FA07E;flex-shrink:0;"></span>
+              <span style="flex:1;">3 flyerafbeeldingen</span><span style="color:#6E6E68;">5%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span style="width:8px;height:8px;background:#3F6B47;flex-shrink:0;"></span>
+              <span style="flex:1;">1 video van 5 seconden</span><span style="color:#6E6E68;">95%</span>
+            </div>
+          </div>
+          <div style="border-top:1px solid #E6E3DA;padding-top:12px;font-size:13px;">41% liep op duurzame energie</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section aria-label="Sanne's avond" data-screen-label="02" style="padding:0 24px 28px;max-width:820px;margin:0 auto;">
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">Stel iemand wil meedoen aan de halve marathon en zoekt sponsors.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">Vijftien vragen aan de chatbot: hoe je sponsors benadert, wat een realistisch streefbedrag is, hoe je een appje schrijft dat mensen niet wegklikken.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">Dan de flyer. Drie afbeeldingen voordat er een versie is die goed genoeg is.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 40px;">En tot slot één filmpje van vijf seconden voor Instagram.</p>
+
+    <div style="display:flex;flex-direction:column;align-items:flex-start;">
+      <div style="font-size:19px;font-weight:600;color:#1C1C1A;line-height:1.3;">15 vragen</div>
+      <div style="font-size:19px;color:#6E6E68;margin:6px 0;">+</div>
+      <div style="font-size:19px;font-weight:600;color:#1C1C1A;line-height:1.3;">10 pogingen voor een afbeelding</div>
+      <div style="font-size:19px;color:#6E6E68;margin:6px 0;">+</div>
+      <div style="font-size:19px;font-weight:600;color:#1C1C1A;line-height:1.3;">3 pogingen voor een filmpje van 5 sec</div>
+      <div style="font-size:19px;color:#6E6E68;margin:6px 0;">=</div>
+      <div style="font-size:clamp(34px,6vw,52px);font-weight:700;color:#3F6B47;letter-spacing:-0.01em;line-height:1.15;margin:4px 0;">2,9 kilowattuur</div>
+      <div style="font-size:19px;color:#6E6E68;margin:6px 0;">=</div>
+      <div style="font-size:26px;font-weight:700;color:#1C1C1A;line-height:1.25;">3x wasbeurten op 40 graden.</div>
+    </div>
+    <p style="font-size:14px;color:#6E6E68;margin:20px 0 0;">Bron: <a href="https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/" target="_blank" rel="noopener">technologyreview.com</a></p>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section aria-label="Drie keer wassen" data-screen-label="03" style="padding:28px 24px 0;max-width:820px;margin:0 auto;">
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">Dat is wat die avond kostte.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">Dat getal was nergens te zien. Niet tijdens het werken, niet achteraf. Het stond niet in de app, niet in een instelling, niet in een maandoverzicht. Nergens.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0;">Niemand wist dat het filmpje het duurste was. Niemand wist dat vijftien vragen stellen bijna niets kost. Er was geen enkele reden om er iets van te vinden, want er was niets om iets van te vinden.</p>
+  </section>
+
+  <section aria-label="Beat" data-screen-label="03b" style="min-height:38vh;display:flex;align-items:center;justify-content:flex-start;padding:24px;max-width:820px;margin:0 auto;">
+    <p style="font-size:clamp(26px,4.6vw,34px);line-height:1.18;font-weight:700;margin:0;max-width:66ch;">Hoeveel wasmachines heb jij vanavond aangezet?</p>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section aria-label="Geen toeval" data-screen-label="04" style="padding:clamp(56px,10vw,96px) 24px;max-width:820px;margin:0 auto;">
+    <h2 style="font-size:clamp(21px,3.6vw,25px);line-height:1.28;font-weight:700;margin:0 0 26px;">Je weet het niet. En dat is geen toeval.</h2>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">De cijfers hierboven komen uit metingen aan open modellen — software die onderzoekers zelf kunnen downloaden en doormeten.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">De chatbots die honderden miljoenen mensen dagelijks gebruiken zijn niet open. ChatGPT, Claude, Gemini en Grok geven geen cijfers. Niet aan gebruikers, niet aan toezichthouders, niet aan onderzoekers.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 32px;">MIT Technology Review vroeg het OpenAI, Google en Microsoft rechtstreeks. Alle drie weigerden getallen te geven.</p>
+
+    <blockquote style="margin:0 0 22px;padding-left:20px;border-left:2px solid #E6E3DA;">
+      <p style="font-size:20px;line-height:1.5;font-style:italic;margin:0 0 8px;">"De aanbieders van gesloten AI-modellen serveren een volledige zwarte doos."</p>
+      <p style="font-size:14px;color:#6E6E68;margin:0;">— Boris Gamazaychikov, Salesforce</p>
+    </blockquote>
+    <blockquote style="margin:0 0 32px;padding-left:20px;border-left:2px solid #E6E3DA;">
+      <p style="font-size:20px;line-height:1.5;font-style:italic;margin:0 0 8px;">"We moeten ophouden met het terugrekenen van getallen op basis van geruchten, en meer druk zetten op deze bedrijven om de echte cijfers te delen."</p>
+      <p style="font-size:14px;color:#6E6E68;margin:0;">— Sasha Luccioni, Hugging Face</p>
+    </blockquote>
+
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">Het Lawrence Berkeley National Laboratory, dat in opdracht van het Amerikaanse energieministerie de vraag naar stroom voorspelt, kwam tot dezelfde conclusie: er wordt zo weinig vrijgegeven dat een fatsoenlijke prognose niet te maken is. Datacenters worden gebouwd zonder dat iemand kan berekenen wat ze het stroomnet gaan kosten.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0;">Dit is geen technisch probleem. De bedrijven meten dit intern tot op de kilowattuur nauwkeurig — ze moeten de rekening zelf betalen. Ze publiceren het alleen niet.</p>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section aria-label="Dit is niet nieuw" data-screen-label="05" style="padding:clamp(56px,10vw,96px) 24px;max-width:820px;margin:0 auto;">
+    <h2 style="font-size:clamp(21px,3.6vw,25px);line-height:1.28;font-weight:700;margin:0 0 26px;">Dit hebben we al tien keer eerder gedaan</h2>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">In Europa staat er al meer dan dertig jaar een energielabel op je koelkast. Later kwam het op wasmachines, lampen, televisies, auto's en huizen. Bij een vliegticket staat de CO₂-uitstoot erbij. Op je pak koekjes staat wat erin zit.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">Elke keer was het argument hetzelfde: wie iets gebruikt, mag weten wat het kost. En elke keer bleek het te kunnen.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 40px;">Niemand vindt het vandaag nog onredelijk dat er een label op een koelkast zit.</p>
+
+    <div style="display:flex;gap:28px;flex-wrap:wrap;margin-bottom:44px;">
+      <div style="text-align:center;">
+        <div style="width:52px;height:76px;border:1.5px solid #1C1C1A;border-radius:3px;margin:0 auto 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;padding:4px 0;">
+          <span style="font-size:9px;font-weight:700;">A</span><span style="font-size:9px;font-weight:700;">B</span><span style="font-size:9px;font-weight:700;">C</span><span style="font-size:9px;font-weight:700;">D</span>
+        </div>
+        <div style="font-size:13px;font-weight:600;">EU-energielabel</div>
+        <div style="font-size:13px;color:#6E6E68;">sinds 1994</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:110px;height:26px;border:1.5px solid #1C1C1A;border-radius:3px;margin:0 auto 10px;display:flex;">
+          <span style="flex:1;border-right:1px solid #1C1C1A;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">A</span>
+          <span style="flex:1;border-right:1px solid #1C1C1A;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">B</span>
+          <span style="flex:1;border-right:1px solid #1C1C1A;background:#1C1C1A;color:#FAF9F5;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">C</span>
+          <span style="flex:1;border-right:1px solid #1C1C1A;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">D</span>
+          <span style="flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">E</span>
+        </div>
+        <div style="font-size:13px;font-weight:600;">Nutri-Score</div>
+        <div style="font-size:13px;color:#6E6E68;">sinds 2017</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:96px;height:56px;border:1.5px solid #1C1C1A;border-radius:3px;margin:0 auto 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+          <span style="font-size:15px;font-weight:700;">CO₂</span>
+          <span style="font-size:11px;color:#6E6E68;">92 kg</span>
+        </div>
+        <div style="font-size:13px;font-weight:600;">Op je vliegticket</div>
+        <div style="font-size:13px;color:#6E6E68;">sinds 2021</div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Beat" data-screen-label="05b" style="min-height:38vh;display:flex;align-items:center;justify-content:flex-start;padding:24px;max-width:820px;margin:0 auto;">
+    <p style="font-size:clamp(26px,4.6vw,34px);line-height:1.18;font-weight:700;margin:0;max-width:66ch;">Alleen bij het snelst groeiende stroomverbruik van dit moment weet niemand iets.</p>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section aria-label="Tussen-CTA" data-screen-label="06" style="padding:clamp(48px,8vw,80px) 24px;max-width:820px;margin:0 auto;text-align:left;">
+    <p style="font-size:25px;line-height:1.34;font-weight:700;margin:0 0 28px;max-width:66ch;">Wij vragen de EU om AI-aanbieders te verplichten het energieverbruik van elk antwoord te tonen.</p>
+    <button style="background:#1C1C1A;color:#FAF9F5;border:none;font-size:16px;font-weight:600;padding:15px 28px;border-radius:4px;cursor:pointer;" style-hover="background:#3a3a36" style-focus="outline:2px solid #1C1C1A;outline-offset:3px" onClick="{{ scrollToForm }}">Teken de oproep</button>
+    <p style="font-size:14px;color:#6E6E68;margin:16px 0 0;">1.284 mensen gingen je voor</p>
+  </section>
+
+  <!-- SECTION 7 -->
+  <section aria-label="Wat wij vragen" data-screen-label="07" style="padding:clamp(56px,10vw,96px) 24px;max-width:820px;margin:0 auto;">
+    <h2 style="font-size:clamp(21px,3.6vw,25px);line-height:1.28;font-weight:700;margin:0 0 26px;">Wat wij vragen</h2>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 24px;">Eén ding, en niet meer dan dat: <strong>maak het verbruik zichtbaar op het moment dat het gebeurt.</strong></p>
+    <ul style="font-size:17px;line-height:1.62;margin:0 0 32px;padding-left:22px;">
+      <li style="margin-bottom:10px;">Het verbruik van dit antwoord en van dit gesprek, in kilowattuur</li>
+      <li style="margin-bottom:10px;">Een vergelijking die iets zegt — wassen, rijden, koelkast. Een kaal getal helpt niemand, zoals hierboven bleek</li>
+      <li style="margin-bottom:10px;">Waar de stroom vandaan kwam: welk deel duurzaam was</li>
+      <li>Standaard aan. Niet verstopt in een instellingenmenu</li>
+    </ul>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 22px;"><strong>Aan wie:</strong> aan de aanbieders zelf — OpenAI, Anthropic, Google, Meta en xAI — en aan de Europese Commissie en het Europees Parlement, die de regels kunnen vastleggen. Deze oproep loopt buiten een formeel petitietraject: het gewicht komt van aantallen en aandacht, niet van een procedure.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 16px;"><strong>Waarom een wet en geen vriendelijk verzoek:</strong> dit is drie jaar lang vrijwillig geprobeerd. De AI Energy Score, een keurmerk waarmee bedrijven hun modellen vrijwillig kunnen laten beoordelen, bestaat sinds 2024. Vrijwel geen enkel groot bedrijf doet mee. Zolang niemand het hoeft, doet niemand het, want het eerste bedrijf dat opendoet, staat er als enige slecht op.</p>
+    <p style="font-size:17px;line-height:1.62;margin:0;">Een verplichting haalt dat nadeel weg. Iedereen tegelijk, of niemand.</p>
+  </section>
+
+  <!-- SECTION 8 -->
+  <section ref="{{ formRef }}" aria-label="Formulier" data-screen-label="08" style="padding:clamp(56px,10vw,96px) 24px;max-width:820px;margin:0 auto;">
+    <div style="background:#FFFFFF;border:1px solid #E6E3DA;border-radius:6px;padding:clamp(24px,4vw,40px);max-width:480px;">
+      <sc-if value="{{ formSubmitted }}" hint-placeholder-val="{{ false }}">
+        <h2 style="font-size:25px;line-height:1.28;font-weight:700;margin:0 0 14px;">Getekend. Dank je.</h2>
+        <p style="font-size:17px;line-height:1.62;margin:0 0 22px;">Deze oproep werkt alleen bij aantallen. Eén gedeelde link is meer waard dan één handtekening.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button style="background:#1C1C1A;color:#FAF9F5;border:none;font-size:15px;font-weight:600;padding:12px 20px;border-radius:4px;cursor:pointer;" style-hover="background:#3a3a36" style-focus="outline:2px solid #1C1C1A;outline-offset:3px" onClick="{{ copyLink }}">{{ copyLabel }}</button>
+          <a href="mailto:?subject=Teken%20de%20oproep&body=https://example.org" style="font-size:15px;font-weight:600;align-self:center;">Deel via e-mail</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ formNotSubmitted }}" hint-placeholder-val="{{ true }}">
+        <h2 style="font-size:25px;line-height:1.28;font-weight:700;margin:0 0 22px;">Steun je dit? Zet je naam eronder.</h2>
+        <form onSubmit="{{ handleSubmit }}">
+          <label style="display:block;font-size:14px;font-weight:600;margin-bottom:6px;">Naam</label>
+          <input type="text" required="{{ true }}" style="width:100%;padding:12px 14px;font-size:16px;border:1px solid #E6E3DA;border-radius:4px;margin-bottom:16px;background:#FAF9F5;color:#1C1C1A;" style-focus="outline:2px solid #1C1C1A;outline-offset:1px;border-color:#1C1C1A" />
+          <label style="display:block;font-size:14px;font-weight:600;margin-bottom:6px;">E-mailadres</label>
+          <input type="email" required="{{ true }}" style="width:100%;padding:12px 14px;font-size:16px;border:1px solid #E6E3DA;border-radius:4px;margin-bottom:18px;background:#FAF9F5;color:#1C1C1A;" style-focus="outline:2px solid #1C1C1A;outline-offset:1px;border-color:#1C1C1A" />
+          <label style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#6E6E68;margin-bottom:22px;cursor:pointer;">
+            <input type="checkbox" style="margin-top:2px;width:16px;height:16px;flex-shrink:0;accent-color:#1C1C1A;" />
+            <span>Houd mij op de hoogte van deze campagne</span>
+          </label>
+          <button type="submit" style="width:100%;background:#1C1C1A;color:#FAF9F5;border:none;font-size:16px;font-weight:600;padding:15px 24px;border-radius:4px;cursor:pointer;margin-bottom:14px;" style-hover="background:#3a3a36" style-focus="outline:2px solid #1C1C1A;outline-offset:3px">Zet mijn naam eronder</button>
+          <p style="font-size:14px;line-height:1.5;color:#6E6E68;margin:0;">Je gegevens worden alleen gebruikt voor deze oproep, staan op servers in de EU en worden niet gedeeld of verkocht. <a href="#" style="font-size:14px;">Privacyverklaring</a></p>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- SECTION 9 -->
+  <section aria-label="Tegenwerpingen" data-screen-label="09" style="padding:clamp(56px,10vw,96px) 24px;max-width:820px;margin:0 auto;">
+    <h2 style="font-size:clamp(21px,3.6vw,25px);line-height:1.28;font-weight:700;margin:0 0 26px;">"Ja maar…"</h2>
+    <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="3">
+      <div style="border-top:1px solid #E6E3DA;">
+        <button style="width:100%;background:none;border:none;text-align:left;padding:22px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px;" style-focus="outline:2px solid #1C1C1A;outline-offset:2px" onClick="{{ item.toggle }}" aria-expanded="{{ item.open }}">
+          <span style="font-size:17px;font-weight:700;">{{ item.q }}</span>
+          <span style="color:#3F6B47;font-size:22px;font-weight:400;line-height:1;flex-shrink:0;transform:rotate({{ item.rotate }});transition:transform 140ms;display:inline-block;">+</span>
+        </button>
+        <div style="max-height:{{ item.maxH }};overflow:hidden;transition:max-height 140ms ease;">
+          <p style="font-size:17px;line-height:1.62;margin:0 0 26px;max-width:66ch;">{{ item.a }}</p>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- SECTION 10 -->
+  <section id="bronnen" aria-label="Wie hier achter staat" data-screen-label="10" style="padding:clamp(56px,10vw,96px) 24px;max-width:820px;margin:0 auto;">
+    <h2 style="font-size:clamp(21px,3.6vw,25px);line-height:1.28;font-weight:700;margin:0 0 26px;">Wie hier achter staat</h2>
+    <p style="font-size:17px;line-height:1.62;margin:0 0 36px;">Deze oproep komt van The AI Footprint Meter — een onafhankelijk initiatief van mensen die willen dat AI-gebruik net zo meetbaar wordt als elk ander stroomverbruik.</p>
+
+    <div style="font-size:12px;letter-spacing:0.13em;text-transform:uppercase;font-weight:700;color:#6E6E68;margin-bottom:14px;">Bronnen</div>
+    <ul style="font-size:15px;line-height:1.6;color:#6E6E68;margin:0 0 28px;padding-left:20px;">
+      <li style="margin-bottom:8px;">MIT Technology Review, <em>Power Hungry: AI and our energy future</em>, mei 2025 — <a href="https://www.technologyreview.com" target="_blank" rel="noopener">technologyreview.com</a></li>
+      <li style="margin-bottom:8px;">Lawrence Berkeley National Laboratory, <em>United States Data Center Energy Usage Report</em>, december 2024 — <a href="https://eta.lbl.gov" target="_blank" rel="noopener">eta.lbl.gov</a></li>
+      <li style="margin-bottom:8px;">ML.Energy leaderboard, Universiteit van Michigan — <a href="https://ml.energy" target="_blank" rel="noopener">ml.energy</a></li>
+      <li>AI Energy Score, Hugging Face en Salesforce — <a href="https://huggingface.co" target="_blank" rel="noopener">huggingface.co</a></li>
+    </ul>
+    <p style="font-size:14px;line-height:1.5;color:#6E6E68;margin:0;">Alle cijfers op deze pagina zijn na te rekenen. Klopt er iets niet? <a href="mailto:mrtijn@proton.me" style="font-size:14px;">mrtijn@proton.me</a></p>
+  </section>
+
+  <!-- SECTION 11 -->
+  <section aria-label="Wat er daarna gebeurt" data-screen-label="11" style="padding:clamp(56px,10vw,96px) 24px clamp(96px,14vw,140px);max-width:820px;margin:0 auto;">
+    <h2 style="font-size:clamp(21px,3.6vw,25px);line-height:1.28;font-weight:700;margin:0 0 40px;">Wat er met je handtekening gebeurt</h2>
+    <div style="display:flex;flex-direction:column;">
+      <sc-for list="{{ timeline }}" as="step" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:20px 1fr;gap:16px;padding-bottom:36px;position:relative;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <span style="width:10px;height:10px;border-radius:50%;background:{{ step.dotColor }};flex-shrink:0;"></span>
+            <span style="width:1px;flex:1;background:#E6E3DA;margin-top:6px;"></span>
+          </div>
+          <div>
+            <div style="font-size:17px;font-weight:700;color:{{ step.textColor }};margin-bottom:8px;">{{ step.title }}</div>
+            <p style="font-size:16px;line-height:1.6;color:{{ step.textColor }};margin:0;max-width:66ch;">{{ step.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size:17px;line-height:1.62;margin:8px 0 0;">Deze pagina wordt bijgewerkt. Wie tekent, hoort wat er gebeurt.</p>
+  </section>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    acc0Open: false,
+    faqOpen: [false, false, false],
+    meterFilled: false,
+    formSubmitted: false,
+    copyLabel: 'Kopieer link',
+    isMobile: window.innerWidth < 720,
+  };
+
+  meterCardRef = React.createRef();
+  formRef = React.createRef();
+
+  componentDidMount() {
+    this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.resizeHandler = () => this.setState({ isMobile: window.innerWidth < 720 });
+    window.addEventListener('resize', this.resizeHandler);
+
+    if (this.meterCardRef.current) {
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            if (this.reducedMotion) {
+              this.setState({ meterFilled: true });
+            } else {
+              requestAnimationFrame(() => this.setState({ meterFilled: true }));
+            }
+            this.observer.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      this.observer.observe(this.meterCardRef.current);
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeHandler);
+    if (this.observer) this.observer.disconnect();
+  }
+
+  scrollToForm = (e) => {
+    e.preventDefault();
+    if (this.formRef.current) this.formRef.current.scrollIntoView({ behavior: this.reducedMotion ? 'auto' : 'smooth', block: 'start' });
+  };
+
+  toggleAcc0 = () => this.setState((s) => ({ acc0Open: !s.acc0Open }));
+
+  toggleFaq = (i) => this.setState((s) => {
+    const next = s.faqOpen.slice();
+    next[i] = !next[i];
+    return { faqOpen: next };
+  });
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ formSubmitted: true });
+  };
+
+  copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      this.setState({ copyLabel: 'Link gekopieerd' });
+      setTimeout(() => this.setState({ copyLabel: 'Kopieer link' }), 2000);
+    } catch (err) {
+      this.setState({ copyLabel: 'Kopiëren mislukt' });
+    }
+  };
+
+  renderVals() {
+    const faqData = [
+      {
+        q: '"AI is toch niets vergeleken met vliegen of de vleesindustrie?"',
+        a: 'Klopt, vandaag. Datacenters gebruiken nu 4,4% van alle stroom in de Verenigde Staten. In 2028 is dat naar schatting 12%, en meer dan de helft daarvan gaat naar AI. Dit is de enige post op de energierekening die in vier jaar tijd verdrievoudigt. Juist daarom is het moment om het meetbaar te maken nu, en niet als het al gebeurd is.',
+      },
+      {
+        q: '"Een cijfertje in beeld verandert toch niets aan wat mensen doen?"',
+        a: 'Misschien niet meteen. Maar het energielabel op de koelkast veranderde vooral wat fabrikanten bouwden, niet wat kopers kozen. Zichtbaarheid maakt vergelijken mogelijk, en vergelijken maakt zuiniger zijn de moeite waard. Nu is er geen enkele beloning voor een efficiënt model, want niemand ziet het verschil.',
+      },
+      {
+        q: '"Dit is bedrijfsgeheim, hier gaat innovatie aan onderdoor."',
+        a: 'De vraag gaat niet over hoe een model werkt of hoeveel parameters het heeft. Alleen over hoeveel stroom er door de meter ging. Dat is geen bedrijfsgeheim, dat is een rekening. Autofabrikanten publiceren hun verbruik ook zonder hun motoren uit elkaar te leggen.',
+      },
+    ];
+
+    const faqs = faqData.map((f, i) => ({
+      q: f.q,
+      a: f.a,
+      open: this.state.faqOpen[i],
+      maxH: this.state.faqOpen[i] ? '600px' : '0px',
+      rotate: this.state.faqOpen[i] ? '45deg' : '0deg',
+      toggle: () => this.toggleFaq(i),
+    }));
+
+    const timeline = [
+      { title: 'Nu — verzamelen', body: 'Doel: zo veel mogelijk handtekeningen, zichtbaar op deze pagina.', dotColor: '#1C1C1A', textColor: '#1C1C1A' },
+      { title: 'Daarna — de bedrijven', body: 'De oproep gaat, met alle namen, naar OpenAI, Anthropic, Google, Meta en xAI. Wat zij antwoorden komt op deze pagina te staan. Ook als zij niet antwoorden.', dotColor: '#E6E3DA', textColor: '#6E6E68' },
+      { title: 'Doorlopend — persdruk en aantallen', body: 'Zonder formeel petitietraject werkt deze oproep via zichtbaarheid: media, andere organisaties en herhaalde druk op de aanbieders.', dotColor: '#E6E3DA', textColor: '#6E6E68' },
+      { title: 'Doorlopend — de lijst', body: 'Elk bedrijf dat dit invoert, staat hier. Elk bedrijf dat weigert ook.', dotColor: '#E6E3DA', textColor: '#6E6E68' },
+    ];
+
+    const stickyBarBase = 'position:fixed;z-index:20;background:#1C1C1A;color:#FAF9F5;font-size:13px;font-weight:600;letter-spacing:0.02em;padding:10px 18px;border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,0.12);white-space:nowrap;';
+    const stickyBarStyle = this.state.isMobile
+      ? stickyBarBase + 'left:16px;right:16px;bottom:16px;text-align:center;border-radius:6px;'
+      : stickyBarBase + 'top:20px;right:20px;';
+
+    return {
+      stickyBarStyle,
+      meterCardRef: this.meterCardRef,
+      meterScale: this.state.meterFilled ? 1 : 0,
+      meterTransition: this.reducedMotion ? 'none' : 'transform 600ms cubic-bezier(0.2,0.7,0.2,1)',
+      scrollToForm: this.scrollToForm,
+      acc0Open: this.state.acc0Open,
+      acc0MaxH: this.state.acc0Open ? '600px' : '0px',
+      acc0Rotate: this.state.acc0Open ? '45deg' : '0deg',
+      toggleAcc0: this.toggleAcc0,
+      faqs,
+      timeline,
+      formRef: this.formRef,
+      formSubmitted: this.state.formSubmitted,
+      formNotSubmitted: !this.state.formSubmitted,
+      handleSubmit: this.handleSubmit,
+      copyLink: this.copyLink,
+      copyLabel: this.state.copyLabel,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+---
+---
+
+<section id="tekenen" aria-label="Formulier" class="section-wrap scroll-mt-6 py-[clamp(56px,10vw,96px)]">
+  <div
+    class="max-w-[480px] rounded-md border border-line bg-card p-[clamp(24px,4vw,40px)]"
+    data-form-card
+  >
+    <h2 class="mt-0 mb-[22px] text-[25px] leading-[1.28] font-bold">
+      Steun je dit? Zet je naam eronder.
+    </h2>
+
+    <form method="post" action="/api/sign" data-sign-form novalidate>
+      <label for="naam" class="mb-1.5 block text-[14px] font-semibold">Naam</label>
+      <input
+        id="naam"
+        name="name"
+        type="text"
+        required
+        autocomplete="name"
+        maxlength="120"
+        class="mb-4 w-full rounded border border-line bg-paper px-3.5 py-3 text-[16px] text-ink focus:border-ink focus:outline-2 focus:outline-offset-1 focus:outline-ink"
+      />
+
+      <label for="email" class="mb-1.5 block text-[14px] font-semibold">E-mailadres</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        maxlength="200"
+        class="mb-[18px] w-full rounded border border-line bg-paper px-3.5 py-3 text-[16px] text-ink focus:border-ink focus:outline-2 focus:outline-offset-1 focus:outline-ink"
+      />
+
+      <label class="mb-[22px] flex cursor-pointer items-start gap-2.5 text-[14px] text-muted">
+        <input
+          type="checkbox"
+          name="newsletter"
+          value="ja"
+          class="mt-0.5 h-4 w-4 shrink-0 accent-ink"
+        />
+        <span>Houd mij op de hoogte van deze campagne</span>
+      </label>
+
+      <!-- Spamval: onzichtbaar voor mensen, ingevuld door bots -->
+      <div class="absolute -left-[9999px]" aria-hidden="true">
+        <label for="website">Laat dit veld leeg</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <input type="hidden" name="renderedAt" data-rendered-at value="" />
+
+      <p
+        class="mb-3 hidden text-[14px] leading-[1.5] text-accent"
+        data-form-error
+        role="alert"
+      >
+      </p>
+
+      <button
+        type="submit"
+        class="btn-dark mb-3.5 w-full px-6 hover:bg-ink-hover disabled:opacity-60"
+        data-submit
+      >
+        Zet mijn naam eronder
+      </button>
+
+      <p class="m-0 text-[14px] leading-[1.5] text-muted">
+        Je gegevens worden alleen gebruikt voor deze oproep, staan op servers in de EU en worden niet
+        gedeeld of verkocht. <a href="/privacy" class="text-[14px]">Privacyverklaring</a>
+      </p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const card = document.querySelector<HTMLElement>('[data-form-card]');
+  const form = document.querySelector<HTMLFormElement>('[data-sign-form]');
+  const errorBox = document.querySelector<HTMLElement>('[data-form-error]');
+  const submit = document.querySelector<HTMLButtonElement>('[data-submit]');
+  const renderedAt = document.querySelector<HTMLInputElement>('[data-rendered-at]');
+
+  if (renderedAt) renderedAt.value = String(Date.now());
+
+  function showError(message: string) {
+    if (!errorBox) return;
+    errorBox.textContent = message;
+    errorBox.classList.remove('hidden');
+  }
+
+  form?.addEventListener('submit', async (event) => {
+    if (!form.reportValidity()) {
+      event.preventDefault();
+      return;
+    }
+
+    event.preventDefault();
+    errorBox?.classList.add('hidden');
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = 'Bezig…';
+    }
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const response = await fetch('/api/sign', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', accept: 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        showError(result.error ?? 'Er ging iets mis. Probeer het zo nog eens.');
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = 'Zet mijn naam eronder';
+        }
+        return;
+      }
+
+      if (card) {
+        card.innerHTML = `
+          <h2 class="mt-0 mb-3.5 text-[25px] leading-[1.28] font-bold">Bijna klaar. Kijk in je mail.</h2>
+          <p class="mt-0 mb-[22px] body-text">Er staat één link in. Klik erop en je naam staat eronder.</p>
+          <p class="m-0 text-[14px] leading-[1.5] text-muted">Niets ontvangen? Kijk in de map ongewenste mail, of mail <a href="mailto:mrtijn@proton.me">mrtijn@proton.me</a>.</p>
+        `;
+        card.setAttribute('tabindex', '-1');
+        card.focus();
+      }
+    } catch {
+      showError('Geen verbinding. Probeer het zo nog eens.');
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = 'Zet mijn naam eronder';
+      }
+    }
+  });
+</script>

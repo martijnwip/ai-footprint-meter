@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import StickyBar from '../components/StickyBar.astro';
+---
+
+<Base
+  title="Getekend. Dank je. — The AI Footprint Meter"
+  description="Je handtekening staat eronder."
+  noindex
+>
+  <StickyBar />
+
+  <main class="section-wrap flex min-h-screen flex-col justify-center py-24">
+    <h1
+      class="mt-0 mb-4 text-[clamp(26px,4.6vw,34px)] leading-[1.18] font-bold"
+      data-title
+    >
+      Getekend. Dank je.
+    </h1>
+    <p class="mt-0 mb-8 max-w-[66ch] body-text" data-body>
+      Deze oproep werkt alleen bij aantallen. Eén gedeelde link is meer waard dan één handtekening.
+    </p>
+
+    <div class="mb-10 flex flex-wrap gap-2.5" data-share>
+      <button
+        type="button"
+        class="btn-dark px-5 py-3 text-[15px] hover:bg-ink-hover"
+        data-copy
+        data-url=""
+      >
+        Kopieer link
+      </button>
+      <a
+        href="mailto:?subject=Teken%20de%20oproep&body=Je%20wasmachine%20heeft%20een%20energielabel.%20Je%20AI-chat%20niet."
+        class="self-center text-[15px] font-semibold">Deel via e-mail</a
+      >
+    </div>
+
+    <p class="m-0"><a href="/">Terug naar de pagina</a></p>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('status');
+    const title = document.querySelector<HTMLElement>('[data-title]');
+    const body = document.querySelector<HTMLElement>('[data-body]');
+    const share = document.querySelector<HTMLElement>('[data-share]');
+
+    if (status === 'al' && title && body) {
+      title.textContent = 'Die stond er al.';
+      body.textContent = 'Je handtekening was al bevestigd. Delen helpt wel verder.';
+    }
+
+    if (status === 'ongeldig' && title && body) {
+      title.textContent = 'Deze link werkt niet meer.';
+      body.textContent =
+        'De link is al gebruikt of verlopen. Teken opnieuw, dan komt er een verse mail.';
+      share?.remove();
+    }
+
+    const copyButton = document.querySelector<HTMLButtonElement>('[data-copy]');
+    copyButton?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(new URL('/', window.location.href).href);
+        copyButton.textContent = 'Link gekopieerd';
+        setTimeout(() => {
+          copyButton.textContent = 'Kopieer link';
+        }, 2000);
+      } catch {
+        copyButton.textContent = 'Kopiëren mislukt';
+      }
+    });
+  </script>
+</Base>

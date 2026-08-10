@@ -1,0 +1,86 @@
+---
+const rows = [
+  { dot: 'bg-accent-soft', label: '15 tekstvragen', value: '0,3%' },
+  { dot: 'bg-accent-mid', label: '3 flyerafbeeldingen', value: '5%' },
+  { dot: 'bg-accent', label: '1 video van 5 seconden', value: '95%' },
+];
+---
+
+<section aria-label="In de chat zelf" class="hero-wrap pb-[clamp(56px,10vw,96px)]">
+  <p class="mt-0 mb-[18px] text-[14px] text-muted">Zo ziet dat eruit in de chat zelf</p>
+
+  <div class="overflow-x-auto">
+    <div
+      class="flex h-[600px] min-w-[760px] overflow-hidden rounded-lg border border-line bg-card"
+    >
+      <!-- Zijbalk -->
+      <div class="flex w-[190px] shrink-0 flex-col border-r border-line px-4 py-5">
+        <div class="mb-[18px] text-[15px] font-bold">verda</div>
+        <div class="mb-5 rounded-[5px] bg-ink px-3 py-[9px] text-[13px] font-semibold text-paper">
+          + Nieuwe chat
+        </div>
+        <div class="mb-2.5 text-[11px] tracking-[0.1em] text-muted uppercase">Recent</div>
+        <div class="mb-1.5 rounded-[5px] bg-paper px-2.5 py-2">
+          <div class="text-[13px] font-semibold">Sponsoractie halve marathon</div>
+          <div class="mt-0.5 text-[12px] text-accent">2,9 kWh</div>
+        </div>
+        <div class="px-2.5 py-2">
+          <div class="text-[13px] text-ink">Teamuitje ideeën</div>
+          <div class="mt-0.5 text-[12px] text-muted">0,4 kWh</div>
+        </div>
+      </div>
+
+      <!-- Gesprek -->
+      <div class="flex-1 overflow-y-auto px-7 py-6">
+        <div class="mb-[18px] flex justify-end">
+          <div
+            class="max-w-[340px] rounded-md bg-ink px-3.5 py-2.5 text-[14px] leading-normal text-paper"
+          >
+            Maak een filmpje van 5 seconden van de flyer voor Instagram Stories.
+          </div>
+        </div>
+
+        <p class="mt-0 mb-3.5 text-[14px] leading-relaxed text-ink">
+          Klaar — hier is een clip van 5 seconden, 1080×1920.
+        </p>
+
+        <div
+          class="mb-[22px] flex max-w-[280px] items-center gap-3 rounded-md border border-line px-3.5 py-3"
+        >
+          <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#FAF9F5" aria-hidden="true">
+              <polygon points="5,3 21,12 5,21"></polygon>
+            </svg>
+          </span>
+          <div>
+            <div class="text-[13px] font-semibold">Sponsorflyer — Stories</div>
+            <div class="text-[12px] text-muted">5s · 1080×1920</div>
+          </div>
+        </div>
+
+        <div class="max-w-[420px] rounded-md border border-line p-5">
+          <div class="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+            <span class="text-[11px] font-bold tracking-[0.13em] uppercase">Gespreksverbruik</span>
+            <span class="text-[12px] text-muted">24 berichten</span>
+          </div>
+          <div class="mb-3.5 flex items-baseline gap-2">
+            <span class="text-[34px] leading-none font-bold text-accent">2,9</span>
+            <span class="text-[15px] font-semibold text-accent">kWh</span>
+          </div>
+          <div class="mb-4 flex flex-col gap-2">
+            {
+              rows.map((row) => (
+                <div class="flex items-center gap-2 text-[13px]">
+                  <span class={`h-2 w-2 shrink-0 ${row.dot}`} />
+                  <span class="flex-1">{row.label}</span>
+                  <span class="text-muted">{row.value}</span>
+                </div>
+              ))
+            }
+          </div>
+          <div class="border-t border-line pt-3 text-[13px]">41% liep op duurzame energie</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import StickyBar from '../components/StickyBar.astro';
+---
+
+<Base
+  title="Bijna klaar — The AI Footprint Meter"
+  description="Er staat één link in je mail. Klik erop en je naam staat eronder."
+  noindex
+>
+  <StickyBar />
+
+  <main class="section-wrap flex min-h-screen flex-col justify-center py-24">
+    <h1 class="mt-0 mb-4 text-[clamp(26px,4.6vw,34px)] leading-[1.18] font-bold">
+      Bijna klaar. Kijk in je mail.
+    </h1>
+    <p class="mt-0 mb-6 max-w-[66ch] body-text">
+      Er staat één link in. Klik erop en je naam staat eronder.
+    </p>
+    <p class="mt-0 mb-10 max-w-[66ch] text-[14px] leading-[1.5] text-muted">
+      Niets ontvangen? Kijk in de map ongewenste mail, of mail <a href="mailto:mrtijn@proton.me"
+        >mrtijn@proton.me</a
+      >.
+    </p>
+    <p class="m-0"><a href="/">Terug naar de pagina</a></p>
+  </main>
+</Base>
