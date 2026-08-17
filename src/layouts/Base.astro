@@ -39,5 +39,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
       Naar de inhoud
     </a>
     <slot />
+    <footer class="section-wrap py-8 text-center text-[14px] text-muted">
+      <p class="m-0">
+        Initiatief van <a href="https://www.martijnwip.nl" target="_blank" rel="noopener">Martijn Wip</a>
+      </p>
+    </footer>
   </body>
 </html>
