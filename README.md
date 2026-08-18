@@ -97,7 +97,6 @@ in het geheugen van één functie-instantie en werkt dus niet over meerdere inst
 - **Privacyverklaring** is een concept en moet nagekeken worden voor livegang.
 - **`og.png`** ontbreekt nog in `public/`. Zonder deelafbeelding ziet een gedeelde link er
   kaal uit, en delen is bij deze oproep het hele werk.
-- **Domeinnaam** staat nu als `aifootprintmeter.eu` in `astro.config.mjs` en `robots.txt`.
 - **`npm audit`** meldt drie keer `path-to-regexp`, via `@astrojs/vercel` →
   `@vercel/routing-utils`. Dat zit in het buildproces, niet in wat de bezoeker krijgt.
   Verdwijnt zodra de adapter meegaat; niet zelf forceren.
