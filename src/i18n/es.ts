@@ -24,6 +24,13 @@ const es: Dictionary = {
     cta: 'Firmar la petición',
     meterCaption: 'Así podría verse:',
   },
+  share: {
+    button: 'Compartir',
+    title: 'Firmar la petición',
+    text: 'Tu lavadora tiene una etiqueta energética. Tu chat de IA, no.',
+    copied: 'Enlace copiado',
+    copyFailed: 'No se pudo copiar',
+  },
   meterCard: {
     label: 'Consumo de la conversación',
     meta: '24 mensajes · desde las 20:02',
@@ -266,12 +273,7 @@ const es: Dictionary = {
     alBody: 'Tu firma ya estaba confirmada. Aun así, compartirla ayuda.',
     ongeldigHeading: 'Este enlace ya no funciona.',
     ongeldigBody: 'El enlace ya se usó o ha caducado. Firma de nuevo y recibirás un correo nuevo.',
-    copy: 'Copiar enlace',
-    copied: 'Enlace copiado',
-    copyFailed: 'No se pudo copiar',
     shareEmail: 'Compartir por correo',
-    shareSubject: 'Firma la petición',
-    shareBody: 'Tu lavadora tiene una etiqueta energética. Tu chat de IA, no.',
     back: 'Volver a la página',
   },
   privacy: {

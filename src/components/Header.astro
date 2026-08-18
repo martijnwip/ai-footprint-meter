@@ -5,15 +5,20 @@ const current = Astro.currentLocale ?? 'nl';
 const pathname = Astro.url.pathname;
 ---
 
-<header class="section-wrap flex justify-end gap-4 py-3 text-[13px]">
+<header class="section-wrap flex flex-wrap gap-4 py-3 text-[13px]">
   {
     locales.map((locale) =>
       locale.code === current ? (
-        <span class="font-semibold text-ink" aria-current="true">
+        <span class="inline-flex items-center gap-1.5 font-semibold text-ink" aria-current="true">
+          <span aria-hidden="true">{locale.flag}</span>
           {locale.nativeLabel}
         </span>
       ) : (
-        <a href={getLocalizedPath(pathname, current, locale.code)} class="text-muted hover:text-ink">
+        <a
+          href={getLocalizedPath(pathname, current, locale.code)}
+          class="inline-flex items-center gap-1.5 text-muted hover:text-ink"
+        >
+          <span aria-hidden="true">{locale.flag}</span>
           {locale.nativeLabel}
         </a>
       ),

@@ -1,5 +1,6 @@
 ---
 import MeterCard from './MeterCard.astro';
+import ShareButton from './ShareButton.astro';
 import { useTranslations } from '../i18n/utils';
 
 const t = useTranslations(Astro.currentLocale);
@@ -20,7 +21,10 @@ const t = useTranslations(Astro.currentLocale);
     {t.hero.intro}
   </p>
 
-  <a href="#tekenen" class="btn-dark hover:bg-ink-hover hover:text-paper">{t.hero.cta}</a>
+  <div class="flex flex-wrap items-center gap-3">
+    <a href="#tekenen" class="btn-dark hover:bg-ink-hover hover:text-paper">{t.hero.cta}</a>
+    <ShareButton url={Astro.url.href} />
+  </div>
 
   <div class="mt-[clamp(56px,9vw,88px)]">
     <MeterCard />

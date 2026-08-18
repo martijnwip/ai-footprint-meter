@@ -24,6 +24,13 @@ const de: Dictionary = {
     cta: 'Aufruf unterzeichnen',
     meterCaption: 'So könnte das aussehen:',
   },
+  share: {
+    button: 'Teilen',
+    title: 'Aufruf unterzeichnen',
+    text: 'Deine Waschmaschine hat ein Energielabel. Dein KI-Chat nicht.',
+    copied: 'Link kopiert',
+    copyFailed: 'Kopieren fehlgeschlagen',
+  },
   meterCard: {
     label: 'Gesprächsverbrauch',
     meta: '24 Nachrichten · seit 20:02 Uhr',
@@ -266,12 +273,7 @@ const de: Dictionary = {
     alBody: 'Deine Unterschrift war bereits bestätigt. Teilen hilft trotzdem weiter.',
     ongeldigHeading: 'Dieser Link funktioniert nicht mehr.',
     ongeldigBody: 'Der Link wurde bereits benutzt oder ist abgelaufen. Unterschreib erneut, dann kommt eine frische E-Mail.',
-    copy: 'Link kopieren',
-    copied: 'Link kopiert',
-    copyFailed: 'Kopieren fehlgeschlagen',
     shareEmail: 'Per E-Mail teilen',
-    shareSubject: 'Aufruf unterzeichnen',
-    shareBody: 'Deine Waschmaschine hat ein Energielabel. Dein KI-Chat nicht.',
     back: 'Zurück zur Seite',
   },
   privacy: {

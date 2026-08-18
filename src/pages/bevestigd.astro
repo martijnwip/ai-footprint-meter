@@ -1,13 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import StickyBar from '../components/StickyBar.astro';
+import ShareButton from '../components/ShareButton.astro';
 import { useTranslations, getLocalizedPath, isLocale } from '../i18n/utils';
 
 const t = useTranslations(Astro.currentLocale);
 const currentLocale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'nl';
 const homeHref = getLocalizedPath('/', currentLocale, currentLocale);
 const homeUrl = new URL(homeHref, Astro.url.origin).href;
-const shareHref = `mailto:?subject=${encodeURIComponent(t.bevestigd.shareSubject)}&body=${encodeURIComponent(t.bevestigd.shareBody)}`;
+const shareHref = `mailto:?subject=${encodeURIComponent(t.share.title)}&body=${encodeURIComponent(t.share.text)}`;
 ---
 
 <Base
@@ -28,15 +29,8 @@ const shareHref = `mailto:?subject=${encodeURIComponent(t.bevestigd.shareSubject
       {t.bevestigd.okBody}
     </p>
 
-    <div class="mb-10 flex flex-wrap gap-2.5" data-share>
-      <button
-        type="button"
-        class="btn-dark px-5 py-3 text-[15px] hover:bg-ink-hover"
-        data-copy
-        data-url={homeUrl}
-      >
-        {t.bevestigd.copy}
-      </button>
+    <div class="mb-10 flex flex-wrap items-center gap-2.5" data-share>
+      <ShareButton url={homeUrl} class="btn-dark px-5 py-3 text-[15px] hover:bg-ink-hover" />
       <a href={shareHref} class="self-center text-[15px] font-semibold">{t.bevestigd.shareEmail}</a>
     </div>
 
@@ -65,18 +59,5 @@ const shareHref = `mailto:?subject=${encodeURIComponent(t.bevestigd.shareSubject
       body.textContent = t.ongeldigBody;
       share?.remove();
     }
-
-    const copyButton = document.querySelector('[data-copy]');
-    copyButton?.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(copyButton.dataset.url ?? window.location.href);
-        copyButton.textContent = t.copied;
-        setTimeout(() => {
-          copyButton.textContent = t.copy;
-        }, 2000);
-      } catch {
-        copyButton.textContent = t.copyFailed;
-      }
-    });
   </script>
 </Base>

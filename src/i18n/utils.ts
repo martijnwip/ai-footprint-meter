@@ -7,11 +7,11 @@ import fr from './fr';
 import es from './es';
 
 export const locales = [
-  { code: 'nl', nativeLabel: 'Nederlands' },
-  { code: 'en', nativeLabel: 'English' },
-  { code: 'de', nativeLabel: 'Deutsch' },
-  { code: 'fr', nativeLabel: 'Français' },
-  { code: 'es', nativeLabel: 'Español' },
+  { code: 'nl', nativeLabel: 'Nederlands', flag: '🇳🇱' },
+  { code: 'en', nativeLabel: 'English', flag: '🇬🇧' },
+  { code: 'de', nativeLabel: 'Deutsch', flag: '🇩🇪' },
+  { code: 'fr', nativeLabel: 'Français', flag: '🇫🇷' },
+  { code: 'es', nativeLabel: 'Español', flag: '🇪🇸' },
 ] as const;
 
 export type Locale = (typeof locales)[number]['code'];

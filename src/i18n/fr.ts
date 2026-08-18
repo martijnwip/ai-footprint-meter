@@ -24,6 +24,13 @@ const fr: Dictionary = {
     cta: 'Signer l’appel',
     meterCaption: 'Voici à quoi ça pourrait ressembler :',
   },
+  share: {
+    button: 'Partager',
+    title: 'Signer l’appel',
+    text: 'Ton lave-linge a une étiquette énergétique. Ton chat IA, non.',
+    copied: 'Lien copié',
+    copyFailed: 'Échec de la copie',
+  },
   meterCard: {
     label: 'Consommation de la conversation',
     meta: '24 messages · depuis 20h02',
@@ -266,12 +273,7 @@ const fr: Dictionary = {
     alBody: 'Ta signature était déjà confirmée. La partager aide quand même.',
     ongeldigHeading: 'Ce lien ne fonctionne plus.',
     ongeldigBody: 'Le lien a déjà été utilisé ou a expiré. Signe à nouveau, un nouvel e-mail suivra.',
-    copy: 'Copier le lien',
-    copied: 'Lien copié',
-    copyFailed: 'Échec de la copie',
     shareEmail: 'Partager par e-mail',
-    shareSubject: 'Signer l’appel',
-    shareBody: 'Ton lave-linge a une étiquette énergétique. Ton chat IA, non.',
     back: 'Retour à la page',
   },
   privacy: {

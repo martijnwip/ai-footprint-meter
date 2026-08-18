@@ -24,6 +24,13 @@ const en: Dictionary = {
     cta: 'Sign the call',
     meterCaption: 'Here’s what that could look like:',
   },
+  share: {
+    button: 'Share',
+    title: 'Sign the call',
+    text: 'Your washing machine has an energy label. Your AI chat doesn’t.',
+    copied: 'Link copied',
+    copyFailed: 'Copy failed',
+  },
   meterCard: {
     label: 'Conversation usage',
     meta: '24 messages · since 20:02',
@@ -266,12 +273,7 @@ const en: Dictionary = {
     alBody: 'Your signature was already confirmed. Sharing still helps, though.',
     ongeldigHeading: 'This link no longer works.',
     ongeldigBody: 'The link has already been used or expired. Sign again and a fresh email will follow.',
-    copy: 'Copy link',
-    copied: 'Link copied',
-    copyFailed: 'Copy failed',
     shareEmail: 'Share by email',
-    shareSubject: 'Sign the call',
-    shareBody: 'Your washing machine has an energy label. Your AI chat doesn’t.',
     back: 'Back to the page',
   },
   privacy: {

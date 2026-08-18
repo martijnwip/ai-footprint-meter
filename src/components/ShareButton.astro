@@ -1,0 +1,67 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  url: string;
+  class?: string;
+}
+
+const {
+  url,
+  class: className = 'rounded-md border border-line px-5 py-2.5 text-[13px] font-semibold text-ink hover:bg-line',
+} = Astro.props;
+const t = useTranslations(Astro.currentLocale);
+---
+
+<button
+  type="button"
+  data-share-button
+  data-url={url}
+  data-title={t.share.title}
+  data-text={t.share.text}
+  data-copied={t.share.copied}
+  data-copy-failed={t.share.copyFailed}
+  class={`inline-flex items-center gap-2 ${className}`}
+>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+    <circle cx="18" cy="5" r="2.5"></circle>
+    <circle cx="6" cy="12" r="2.5"></circle>
+    <circle cx="18" cy="19" r="2.5"></circle>
+    <line x1="8.2" y1="10.6" x2="15.8" y2="6.4"></line>
+    <line x1="8.2" y1="13.4" x2="15.8" y2="17.6"></line>
+  </svg>
+  <span data-share-label>{t.share.button}</span>
+</button>
+
+<script is:inline>
+  document.querySelectorAll('[data-share-button]:not([data-share-bound])').forEach((button) => {
+    button.setAttribute('data-share-bound', '');
+    const label = button.querySelector('[data-share-label]');
+    const original = label?.textContent;
+
+    button.addEventListener('click', async () => {
+      const { url, title, text, copied, copyFailed } = button.dataset;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, text, url });
+        } catch {
+          /* gebruiker annuleerde het deelvenster */
+        }
+        return;
+      }
+
+      if (!label) return;
+
+      try {
+        await navigator.clipboard.writeText(url);
+        label.textContent = copied;
+        setTimeout(() => {
+          label.textContent = original;
+        }, 2000);
+      } catch {
+        label.textContent = copyFailed;
+      }
+    });
+  });
+</script>

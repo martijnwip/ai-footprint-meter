@@ -27,6 +27,7 @@ export interface Dictionary {
     bevestigdDescription: string;
   };
   hero: { ariaLabel: string; title: string; intro: string; cta: string; meterCaption: string };
+  share: { button: string; title: string; text: string; copied: string; copyFailed: string };
   meterCard: {
     label: string;
     meta: string;
@@ -153,12 +154,7 @@ export interface Dictionary {
     alBody: string;
     ongeldigHeading: string;
     ongeldigBody: string;
-    copy: string;
-    copied: string;
-    copyFailed: string;
     shareEmail: string;
-    shareSubject: string;
-    shareBody: string;
     back: string;
   };
   privacy: {
@@ -210,6 +206,13 @@ const nl: Dictionary = {
       'Wij vragen de Europese Unie om AI-aanbieders te verplichten het energieverbruik van elk chat te tonen. In de app. Op het moment zelf.',
     cta: 'Teken de oproep',
     meterCaption: 'Zo zou dat eruit kunnen zien:',
+  },
+  share: {
+    button: 'Delen',
+    title: 'Teken de oproep',
+    text: 'Je wasmachine heeft een energielabel. Je AI-chat niet.',
+    copied: 'Link gekopieerd',
+    copyFailed: 'Kopiëren mislukt',
   },
   meterCard: {
     label: 'Gespreksverbruik',
@@ -453,12 +456,7 @@ const nl: Dictionary = {
     alBody: 'Je handtekening was al bevestigd. Delen helpt wel verder.',
     ongeldigHeading: 'Deze link werkt niet meer.',
     ongeldigBody: 'De link is al gebruikt of verlopen. Teken opnieuw, dan komt er een verse mail.',
-    copy: 'Kopieer link',
-    copied: 'Link gekopieerd',
-    copyFailed: 'Kopiëren mislukt',
     shareEmail: 'Deel via e-mail',
-    shareSubject: 'Teken de oproep',
-    shareBody: 'Je wasmachine heeft een energielabel. Je AI-chat niet.',
     back: 'Terug naar de pagina',
   },
   privacy: {
