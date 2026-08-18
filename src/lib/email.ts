@@ -69,6 +69,7 @@ export async function sendConfirmationMail({ to, name, confirmUrl }: SendArgs) {
     body: JSON.stringify({
       sender: { name: fromName, email: fromEmail },
       to: [{ email: to, name }],
+      replyTo: { email: 'aifootprintmeter@proton.me' },
       subject: 'Bevestig je handtekening',
       textContent: text,
       htmlContent: html,
