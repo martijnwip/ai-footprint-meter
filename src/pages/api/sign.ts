@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { checkBotId } from 'botid/server';
 import { supabase } from '../../lib/supabase';
 import { sendConfirmationMail } from '../../lib/email';
 
@@ -55,6 +56,11 @@ export const POST: APIRoute = async ({ request, clientAddress, url }) => {
       headers: { 'content-type': 'application/json' },
     });
   };
+
+  const { isBot } = await checkBotId();
+  if (isBot) {
+    return respond(403, { error: 'Toegang geweigerd.' });
+  }
 
   // Spamval en invultijd
   if (typeof payload.website === 'string' && payload.website.trim() !== '') {

@@ -74,6 +74,12 @@
 </section>
 
 <script>
+  import { initBotId } from 'botid/client/core';
+
+  initBotId({
+    protect: [{ path: '/api/sign', method: 'POST' }],
+  });
+
   const card = document.querySelector<HTMLElement>('[data-form-card]');
   const form = document.querySelector<HTMLFormElement>('[data-sign-form]');
   const errorBox = document.querySelector<HTMLElement>('[data-form-error]');
