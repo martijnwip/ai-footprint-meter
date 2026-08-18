@@ -66,7 +66,7 @@ const currentLocale = (Astro.currentLocale ?? 'nl') as Locale;
     </a>
     <Header />
     <slot />
-    <footer class="section-wrap py-8 text-center text-[14px] text-muted">
+    <footer class="section-wrap pt-8 pb-20 text-center text-[14px] text-muted min-[720px]:pb-8">
       <p class="m-0">
         {t.footer.initiativeBy} <a href="https://www.martijnwip.nl" target="_blank" rel="noopener">Martijn Wip</a>
       </p>
