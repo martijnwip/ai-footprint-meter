@@ -27,6 +27,14 @@ export async function fetchConfirmedCountSafe(): Promise<number> {
   }
 }
 
-export function formatCount(value: number): string {
-  return new Intl.NumberFormat('nl-NL').format(value);
+const NUMBER_LOCALES: Record<string, string> = {
+  nl: 'nl-NL',
+  en: 'en-GB',
+  de: 'de-DE',
+  fr: 'fr-FR',
+  es: 'es-ES',
+};
+
+export function formatCount(value: number, locale?: string): string {
+  return new Intl.NumberFormat(NUMBER_LOCALES[locale ?? 'nl'] ?? 'nl-NL').format(value);
 }

@@ -3,6 +3,8 @@ import '../styles/global.css';
 import Analytics from '@vercel/analytics/astro'
 import SpeedInsights from "@vercel/speed-insights/astro"
 import CookieFreeBadge from '../components/CookieFreeBadge.astro'
+import Header from '../components/Header.astro'
+import { locales, useTranslations, getLocalizedPath, type Locale } from '../i18n/utils'
 
 interface Props {
   title: string;
@@ -12,10 +14,12 @@ interface Props {
 
 const { title, description, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const t = useTranslations(Astro.currentLocale);
+const currentLocale = (Astro.currentLocale ?? 'nl') as Locale;
 ---
 
 <!doctype html>
-<html lang="nl">
+<html lang={t.html.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,9 +27,28 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical.href} />
     {noindex && <meta name="robots" content="noindex" />}
+    {
+      !noindex &&
+        locales.map((locale) => (
+          <link
+            rel="alternate"
+            hreflang={locale.code}
+            href={new URL(getLocalizedPath(Astro.url.pathname, currentLocale, locale.code), Astro.site ?? Astro.url.origin).href}
+          />
+        ))
+    }
+    {
+      !noindex && (
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={new URL(getLocalizedPath(Astro.url.pathname, currentLocale, 'nl'), Astro.site ?? Astro.url.origin).href}
+        />
+      )
+    }
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:locale" content={t.html.ogLocale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
@@ -39,12 +62,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
       href="#inhoud"
       class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
     >
-      Naar de inhoud
+      {t.html.skipLink}
     </a>
+    <Header />
     <slot />
     <footer class="section-wrap py-8 text-center text-[14px] text-muted">
       <p class="m-0">
-        Initiatief van <a href="https://www.martijnwip.nl" target="_blank" rel="noopener">Martijn Wip</a>
+        {t.footer.initiativeBy} <a href="https://www.martijnwip.nl" target="_blank" rel="noopener">Martijn Wip</a>
       </p>
     </footer>
     <Analytics/>

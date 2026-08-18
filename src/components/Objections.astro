@@ -1,26 +1,15 @@
 ---
-const faqs = [
-  {
-    q: '"AI is toch niets vergeleken met vliegen of de vleesindustrie?"',
-    a: 'Klopt, vandaag. Datacenters gebruiken nu 4,4% van alle stroom in de Verenigde Staten. In 2028 is dat naar schatting 12%, en meer dan de helft daarvan gaat naar AI. Dit is de enige post op de energierekening die in vier jaar tijd verdrievoudigt. Juist daarom is het moment om het meetbaar te maken nu, en niet als het al gebeurd is.',
-  },
-  {
-    q: '"Een cijfertje in beeld verandert toch niets aan wat mensen doen?"',
-    a: 'Misschien niet meteen. Maar het energielabel op de koelkast veranderde vooral wat fabrikanten bouwden, niet wat kopers kozen. Zichtbaarheid maakt vergelijken mogelijk, en vergelijken maakt zuiniger zijn de moeite waard. Nu is er geen enkele beloning voor een efficiënt model, want niemand ziet het verschil.',
-  },
-  {
-    q: '"Dit is bedrijfsgeheim, hier gaat innovatie aan onderdoor."',
-    a: 'De vraag gaat niet over hoe een model werkt of hoeveel parameters het heeft. Alleen over hoeveel stroom er door de meter ging. Dat is geen bedrijfsgeheim, dat is een rekening. Autofabrikanten publiceren hun verbruik ook zonder hun motoren uit elkaar te leggen.',
-  },
-];
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
-<section aria-label="Tegenwerpingen" class="section-wrap py-[clamp(56px,10vw,96px)]">
-  <h2 class="h2-title mt-0 mb-[26px]">"Ja maar…"</h2>
+<section aria-label={t.objections.ariaLabel} class="section-wrap py-[clamp(56px,10vw,96px)]">
+  <h2 class="h2-title mt-0 mb-[26px]">{t.objections.heading}</h2>
 
   {/* <details> in plaats van JavaScript: werkt zonder script en is toetsenbordvriendelijk */}
   {
-    faqs.map((faq) => (
+    t.objections.faqs.map((faq) => (
       <details class="group border-t border-line">
         <summary
           class="flex cursor-pointer list-none items-center justify-between gap-4 py-[22px] text-[17px] font-bold [&::-webkit-details-marker]:hidden"

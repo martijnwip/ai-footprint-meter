@@ -1,27 +1,29 @@
 ---
 import MeterCard from './MeterCard.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <section
   id="inhoud"
-  aria-label="Introductie"
+  aria-label={t.hero.ariaLabel}
   class="hero-wrap pt-[clamp(72px,14vw,140px)] pb-[clamp(16px,3vw,24px)]"
 >
   <h1
     class="mt-0 mb-6 max-w-[820px] text-[clamp(30px,6.2vw,46px)] leading-[1.1] font-bold tracking-[-0.025em]"
   >
-    Je wasmachine heeft een energielabel. Je AI-chat niet.
+    {t.hero.title}
   </h1>
 
   <p class="mt-0 mb-10 max-w-[66ch] text-[20px] leading-[1.55] text-muted">
-    Wij vragen de Europese Unie om AI-aanbieders te verplichten het energieverbruik van elk chat
-    te tonen. In de app. Op het moment zelf.
+    {t.hero.intro}
   </p>
 
-  <a href="#tekenen" class="btn-dark hover:bg-ink-hover hover:text-paper">Teken de oproep</a>
+  <a href="#tekenen" class="btn-dark hover:bg-ink-hover hover:text-paper">{t.hero.cta}</a>
 
   <div class="mt-[clamp(56px,9vw,88px)]">
     <MeterCard />
-    <p class="mt-9 mb-0 text-[26px] font-semibold text-ink">Zo zou dat eruit kunnen zien:</p>
+    <p class="mt-9 mb-0 text-[26px] font-semibold text-ink">{t.hero.meterCaption}</p>
   </div>
 </section>

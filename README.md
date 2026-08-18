@@ -102,4 +102,8 @@ in het geheugen van één functie-instantie en werkt dus niet over meerdere inst
   Verdwijnt zodra de adapter meegaat; niet zelf forceren.
 - **Analytics** zit er niet in. Plausible of Simple Analytics past hier: cookieloos,
   EU-gehost, geen cookiebanner.
+- **Vertalingen (en/de/fr/es)** zijn AI-gegenereerd (`src/i18n/*.ts`) en nog niet door
+  native speakers nagekeken. Uitzondering: de twee Engelse citaten in `NoAccident.astro`
+  zijn opgezocht en woordelijk overgenomen uit het originele MIT Technology
+  Review-artikel, niet teruggevertaald vanuit het Nederlands.
 # ai-footprint-meter

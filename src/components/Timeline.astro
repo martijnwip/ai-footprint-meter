@@ -1,50 +1,31 @@
 ---
-const steps = [
-  {
-    title: 'Nu — verzamelen',
-    body: 'Doel: zo veel mogelijk handtekeningen, zichtbaar op deze pagina.',
-    active: true,
-  },
-  {
-    title: 'Daarna — de bedrijven',
-    body: 'De oproep gaat, met alle namen, naar OpenAI, Anthropic, Google, Meta en xAI. Wat zij antwoorden komt op deze pagina te staan. Ook als zij niet antwoorden.',
-    active: false,
-  },
-  {
-    title: 'Doorlopend — persdruk en aantallen',
-    body: 'Zonder formeel petitietraject werkt deze oproep via zichtbaarheid: media, andere organisaties en herhaalde druk op de aanbieders.',
-    active: false,
-  },
-  {
-    title: 'Doorlopend — de lijst',
-    body: 'Elk bedrijf dat dit invoert, staat hier.',
-    active: false,
-  },
-];
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <section
-  aria-label="Wat er daarna gebeurt"
+  aria-label={t.timeline.ariaLabel}
   class="section-wrap pt-[clamp(56px,10vw,96px)] pb-[clamp(96px,14vw,140px)]"
 >
-  <h2 class="h2-title mt-0 mb-10">Wat er met je handtekening gebeurt</h2>
+  <h2 class="h2-title mt-0 mb-10">{t.timeline.heading}</h2>
 
   <ol class="m-0 flex list-none flex-col p-0">
     {
-      steps.map((step) => (
+      t.timeline.steps.map((step, index) => (
         <li class="relative grid grid-cols-[20px_1fr] gap-4 pb-9">
           <div class="flex flex-col items-center">
             <span
-              class={`h-2.5 w-2.5 shrink-0 rounded-full ${step.active ? 'bg-ink' : 'bg-line'}`}
+              class={`h-2.5 w-2.5 shrink-0 rounded-full ${index === 0 ? 'bg-ink' : 'bg-line'}`}
               aria-hidden="true"
             />
             <span class="mt-1.5 w-px flex-1 bg-line" aria-hidden="true" />
           </div>
           <div>
-            <div class={`mb-2 text-[17px] font-bold ${step.active ? 'text-ink' : 'text-muted'}`}>
+            <div class={`mb-2 text-[17px] font-bold ${index === 0 ? 'text-ink' : 'text-muted'}`}>
               {step.title}
             </div>
-            <p class={`m-0 max-w-[66ch] text-[16px] leading-relaxed ${step.active ? 'text-ink' : 'text-muted'}`}>
+            <p class={`m-0 max-w-[66ch] text-[16px] leading-relaxed ${index === 0 ? 'text-ink' : 'text-muted'}`}>
               {step.body}
             </p>
           </div>
@@ -54,6 +35,6 @@ const steps = [
   </ol>
 
   <p class="mt-2 mb-0 body-text">
-    Deze pagina wordt bijgewerkt. Wie tekent, hoort wat er gebeurt.
+    {t.timeline.footer}
   </p>
 </section>

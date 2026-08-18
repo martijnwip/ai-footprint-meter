@@ -1,35 +1,25 @@
 ---
-const asks = [
-  'Het verbruik van dit antwoord en van dit gesprek, in kilowattuur',
-  'Een vergelijking die iets zegt — wassen, rijden, koelkast. Een kaal getal helpt niemand, zoals hierboven bleek',
-  'Waar de stroom vandaan kwam: welk deel duurzaam was',
-  'Standaard aan. Niet verstopt in een instellingenmenu',
-];
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
-<section aria-label="Wat wij vragen" class="section-wrap py-[clamp(56px,10vw,96px)]">
-  <h2 class="h2-title mt-0 mb-[26px]">Wat wij vragen</h2>
+<section aria-label={t.theAsk.ariaLabel} class="section-wrap py-[clamp(56px,10vw,96px)]">
+  <h2 class="h2-title mt-0 mb-[26px]">{t.theAsk.heading}</h2>
 
   <p class="mt-0 mb-6 body-text">
-    Eén ding, en niet meer dan dat: <strong
-      >maak het verbruik zichtbaar op het moment dat het gebeurt.</strong
-    >
+    {t.theAsk.introPrefix}<strong>{t.theAsk.introStrong}</strong>
   </p>
 
   <ul class="mt-0 mb-8 list-disc pl-[22px] body-text">
-    {asks.map((ask, index) => <li class={index === asks.length - 1 ? '' : 'mb-2.5'}>{ask}</li>)}
+    {t.theAsk.asks.map((ask, index) => <li class={index === t.theAsk.asks.length - 1 ? '' : 'mb-2.5'}>{ask}</li>)}
   </ul>
 
   <p class="mt-0 mb-[22px] body-text">
-    <strong>Aan wie:</strong> aan de aanbieders zelf — OpenAI, Anthropic, Google, Meta en xAI — en aan
-    de Europese Commissie en het Europees Parlement, die de regels kunnen vastleggen. Deze oproep loopt
-    buiten een formeel petitietraject: het gewicht komt van aantallen en aandacht, niet van een procedure.
+    <strong>{t.theAsk.whoLabel}</strong> {t.theAsk.whoText}
   </p>
   <p class="mt-0 mb-4 body-text">
-    <strong>Waarom een wet en geen vriendelijk verzoek:</strong> dit is drie jaar lang vrijwillig geprobeerd.
-    De AI Energy Score, een keurmerk waarmee bedrijven hun modellen vrijwillig kunnen laten beoordelen,
-    bestaat sinds 2024. Vrijwel geen enkel groot bedrijf doet mee. Zolang niemand het hoeft, doet niemand
-    het, want het eerste bedrijf dat opendoet, staat er als enige slecht op.
+    <strong>{t.theAsk.whyLabel}</strong> {t.theAsk.whyText}
   </p>
-  <p class="m-0 body-text">Een verplichting haalt dat nadeel weg. Iedereen tegelijk, of niemand.</p>
+  <p class="m-0 body-text">{t.theAsk.conclusion}</p>
 </section>

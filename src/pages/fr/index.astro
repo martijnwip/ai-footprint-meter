@@ -1,21 +1,21 @@
 ---
-import Base from '../layouts/Base.astro';
-import StickyBar from '../components/StickyBar.astro';
-import Hero from '../components/Hero.astro';
-import ChatMockup from '../components/ChatMockup.astro';
-import EveningSum from '../components/EveningSum.astro';
-import AfterMath from '../components/AfterMath.astro';
-import Beat from '../components/Beat.astro';
-import NoAccident from '../components/NoAccident.astro';
-import NotNew from '../components/NotNew.astro';
-import MidCta from '../components/MidCta.astro';
-import TheAsk from '../components/TheAsk.astro';
-import SignForm from '../components/SignForm.astro';
-import Objections from '../components/Objections.astro';
-import WhoWeAre from '../components/WhoWeAre.astro';
-import Timeline from '../components/Timeline.astro';
-import { fetchConfirmedCountSafe } from '../lib/count';
-import { useTranslations } from '../i18n/utils';
+import Base from '../../layouts/Base.astro';
+import StickyBar from '../../components/StickyBar.astro';
+import Hero from '../../components/Hero.astro';
+import ChatMockup from '../../components/ChatMockup.astro';
+import EveningSum from '../../components/EveningSum.astro';
+import AfterMath from '../../components/AfterMath.astro';
+import Beat from '../../components/Beat.astro';
+import NoAccident from '../../components/NoAccident.astro';
+import NotNew from '../../components/NotNew.astro';
+import MidCta from '../../components/MidCta.astro';
+import TheAsk from '../../components/TheAsk.astro';
+import SignForm from '../../components/SignForm.astro';
+import Objections from '../../components/Objections.astro';
+import WhoWeAre from '../../components/WhoWeAre.astro';
+import Timeline from '../../components/Timeline.astro';
+import { fetchConfirmedCountSafe } from '../../lib/count';
+import { useTranslations } from '../../i18n/utils';
 
 // Getal komt uit de build; de browser ververst het daarna via /api/count.
 const count = await fetchConfirmedCountSafe();

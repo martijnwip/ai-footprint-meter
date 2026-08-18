@@ -1,4 +1,7 @@
 ---
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div
@@ -19,12 +22,12 @@
     </svg>
   </span>
 
-  <p class="m-0 flex-1 text-[13px] leading-[1.4]">Dit is een cookie-vrije omgeving.</p>
+  <p class="m-0 flex-1 text-[13px] leading-[1.4]">{t.cookieBadge.message}</p>
 
   <button
     type="button"
     data-cookie-free-dismiss
-    aria-label="Melding sluiten"
+    aria-label={t.cookieBadge.dismissAria}
     class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-muted hover:bg-line hover:text-ink"
   >
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">

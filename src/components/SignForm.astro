@@ -1,17 +1,21 @@
 ---
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
+const locale = Astro.currentLocale ?? 'nl';
 ---
 
-<section id="tekenen" aria-label="Formulier" class="section-wrap scroll-mt-6 py-[clamp(56px,10vw,96px)]">
+<section id="tekenen" aria-label={t.signForm.heading} class="section-wrap scroll-mt-6 py-[clamp(56px,10vw,96px)]">
   <div
     class="max-w-[480px] rounded-md border border-line bg-card p-[clamp(24px,4vw,40px)]"
     data-form-card
   >
     <h2 class="mt-0 mb-[22px] text-[25px] leading-[1.28] font-bold">
-      Steun je dit? Zet je naam eronder.
+      {t.signForm.heading}
     </h2>
 
     <form method="post" action="/api/sign" data-sign-form novalidate>
-      <label for="naam" class="mb-1.5 block text-[14px] font-semibold">Naam</label>
+      <label for="naam" class="mb-1.5 block text-[14px] font-semibold">{t.signForm.nameLabel}</label>
       <input
         id="naam"
         name="name"
@@ -22,7 +26,7 @@
         class="mb-4 w-full rounded border border-line bg-paper px-3.5 py-3 text-[16px] text-ink focus:border-ink focus:outline-2 focus:outline-offset-1 focus:outline-ink"
       />
 
-      <label for="email" class="mb-1.5 block text-[14px] font-semibold">E-mailadres</label>
+      <label for="email" class="mb-1.5 block text-[14px] font-semibold">{t.signForm.emailLabel}</label>
       <input
         id="email"
         name="email"
@@ -40,15 +44,16 @@
           value="ja"
           class="mt-0.5 h-4 w-4 shrink-0 accent-ink"
         />
-        <span>Houd mij op de hoogte van deze campagne</span>
+        <span>{t.signForm.newsletterLabel}</span>
       </label>
 
       <!-- Spamval: onzichtbaar voor mensen, ingevuld door bots -->
       <div class="absolute -left-[9999px]" aria-hidden="true">
-        <label for="website">Laat dit veld leeg</label>
+        <label for="website">{t.signForm.honeypotLabel}</label>
         <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
       </div>
       <input type="hidden" name="renderedAt" data-rendered-at value="" />
+      <input type="hidden" name="lang" value={locale} />
 
       <p
         class="mb-3 hidden text-[14px] leading-[1.5] text-accent"
@@ -62,12 +67,11 @@
         class="btn-dark mb-3.5 w-full px-6 hover:bg-ink-hover disabled:opacity-60"
         data-submit
       >
-        Zet mijn naam eronder
+        {t.signForm.submit}
       </button>
 
       <p class="m-0 text-[14px] leading-[1.5] text-muted">
-        Je gegevens worden alleen gebruikt voor deze oproep, staan op servers in de EU en worden niet
-        gedeeld of verkocht. <a href="/privacy" class="text-[14px]">Privacyverklaring</a>
+        {t.signForm.privacyPrefix} <a href="/privacy" class="text-[14px]">{t.signForm.privacyLink}</a>
       </p>
     </form>
   </div>
@@ -79,16 +83,18 @@
   initBotId({
     protect: [{ path: '/api/sign', method: 'POST' }],
   });
+</script>
 
-  const card = document.querySelector<HTMLElement>('[data-form-card]');
-  const form = document.querySelector<HTMLFormElement>('[data-sign-form]');
-  const errorBox = document.querySelector<HTMLElement>('[data-form-error]');
-  const submit = document.querySelector<HTMLButtonElement>('[data-submit]');
-  const renderedAt = document.querySelector<HTMLInputElement>('[data-rendered-at]');
+<script is:inline define:vars={{ t: t.signForm, contactEmail: 'aifootprintmeter@proton.me' }}>
+  const card = document.querySelector('[data-form-card]');
+  const form = document.querySelector('[data-sign-form]');
+  const errorBox = document.querySelector('[data-form-error]');
+  const submit = document.querySelector('[data-submit]');
+  const renderedAt = document.querySelector('[data-rendered-at]');
 
   if (renderedAt) renderedAt.value = String(Date.now());
 
-  function showError(message: string) {
+  function showError(message) {
     if (!errorBox) return;
     errorBox.textContent = message;
     errorBox.classList.remove('hidden');
@@ -104,7 +110,7 @@
     errorBox?.classList.add('hidden');
     if (submit) {
       submit.disabled = true;
-      submit.textContent = 'Bezig…';
+      submit.textContent = t.submitting;
     }
 
     const data = Object.fromEntries(new FormData(form).entries());
@@ -119,28 +125,28 @@
       const result = await response.json();
 
       if (!response.ok) {
-        showError(result.error ?? 'Er ging iets mis. Probeer het zo nog eens.');
+        showError(t.errors[result.error] ?? t.errors.GENERIC);
         if (submit) {
           submit.disabled = false;
-          submit.textContent = 'Zet mijn naam eronder';
+          submit.textContent = t.submit;
         }
         return;
       }
 
       if (card) {
         card.innerHTML = `
-          <h2 class="mt-0 mb-3.5 text-[25px] leading-[1.28] font-bold">Bijna klaar. Kijk in je mail.</h2>
-          <p class="mt-0 mb-[22px] body-text">Er staat één link in. Klik erop en je naam staat eronder.</p>
-          <p class="m-0 text-[14px] leading-[1.5] text-muted">Niets ontvangen? Kijk in de map ongewenste mail, of mail <a href="mailto:aifootprintmeter@proton.me">aifootprintmeter@proton.me</a>.</p>
+          <h2 class="mt-0 mb-3.5 text-[25px] leading-[1.28] font-bold">${t.successHeading}</h2>
+          <p class="mt-0 mb-[22px] body-text">${t.successBody}</p>
+          <p class="m-0 text-[14px] leading-[1.5] text-muted">${t.successHelpPrefix} <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>
         `;
         card.setAttribute('tabindex', '-1');
         card.focus();
       }
     } catch {
-      showError('Geen verbinding. Probeer het zo nog eens.');
+      showError(t.errors.NETWORK);
       if (submit) {
         submit.disabled = false;
-        submit.textContent = 'Zet mijn naam eronder';
+        submit.textContent = t.submit;
       }
     }
   });

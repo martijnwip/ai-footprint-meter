@@ -1,20 +1,20 @@
 ---
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
-<section aria-label="Dit is niet nieuw" class="section-wrap py-[clamp(56px,10vw,96px)]">
-  <h2 class="h2-title mt-0 mb-[26px]">Dit is al eerder gedaan</h2>
+<section aria-label={t.notNew.ariaLabel} class="section-wrap py-[clamp(56px,10vw,96px)]">
+  <h2 class="h2-title mt-0 mb-[26px]">{t.notNew.heading}</h2>
 
   <p class="mt-0 mb-[22px] body-text">
-    In Europa staat er al meer dan dertig jaar een energielabel op je koelkast. Later kwam het op
-    wasmachines, lampen, televisies, auto's en huizen. Bij een vliegticket staat de CO₂-uitstoot
-    erbij. Op je pak koekjes staat wat erin zit.
+    {t.notNew.p1}
   </p>
   <p class="mt-0 mb-[22px] body-text">
-    Elke keer was het argument hetzelfde: wie iets gebruikt, mag weten wat het kost. En elke keer
-    bleek het te kunnen.
+    {t.notNew.p2}
   </p>
   <p class="mt-0 mb-10 body-text">
-    Niemand vindt het vandaag nog onredelijk dat er een label op een koelkast zit.
+    {t.notNew.p3}
   </p>
 
   <div class="mb-11 flex flex-wrap gap-7">
@@ -28,8 +28,8 @@
         <span class="text-[9px] font-bold">C</span>
         <span class="text-[9px] font-bold">D</span>
       </div>
-      <div class="text-[13px] font-semibold">EU-energielabel</div>
-      <div class="text-[13px] text-muted">sinds 1994</div>
+      <div class="text-[13px] font-semibold">{t.notNew.euLabel}</div>
+      <div class="text-[13px] text-muted">{t.notNew.euSince}</div>
     </div>
 
     <div class="text-center">
@@ -46,8 +46,8 @@
         <span class="flex flex-1 items-center justify-center border-r border-ink text-[11px] font-bold">D</span>
         <span class="flex flex-1 items-center justify-center text-[11px] font-bold">E</span>
       </div>
-      <div class="text-[13px] font-semibold">Nutri-Score</div>
-      <div class="text-[13px] text-muted">sinds 2017</div>
+      <div class="text-[13px] font-semibold">{t.notNew.nutriScore}</div>
+      <div class="text-[13px] text-muted">{t.notNew.nutriSince}</div>
     </div>
 
     <div class="text-center">
@@ -58,8 +58,8 @@
         <span class="text-[15px] font-bold">CO₂</span>
         <span class="text-[11px] text-muted">92 kg</span>
       </div>
-      <div class="text-[13px] font-semibold">Op je vliegticket</div>
-      <div class="text-[13px] text-muted">sinds 2021</div>
+      <div class="text-[13px] font-semibold">{t.notNew.flightLabel}</div>
+      <div class="text-[13px] text-muted">{t.notNew.flightSince}</div>
     </div>
   </div>
 </section>

@@ -14,7 +14,7 @@ export const GET: APIRoute = async () => {
       cache = { value: await fetchConfirmedCount(), until: now + TTL_MS };
     } catch (error) {
       console.error('Tellen mislukt', error);
-      return new Response(JSON.stringify({ error: 'niet beschikbaar' }), {
+      return new Response(JSON.stringify({ error: 'UNAVAILABLE' }), {
         status: 503,
         headers: { 'content-type': 'application/json' },
       });

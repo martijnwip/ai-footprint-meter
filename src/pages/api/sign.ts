@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { checkBotId } from 'botid/server';
 import { supabase } from '../../lib/supabase';
 import { sendConfirmationMail } from '../../lib/email';
+import { isLocale, type Locale } from '../../i18n/utils';
 
 export const prerender = false;
 
@@ -39,6 +40,10 @@ function token() {
   return [...bytes].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
+function localePath(lang: Locale, path: string) {
+  return lang === 'nl' ? path : `/${lang}${path}`;
+}
+
 export const POST: APIRoute = async ({ request, clientAddress, url }) => {
   const contentType = request.headers.get('content-type') ?? '';
   const wantsJson = request.headers.get('accept')?.includes('application/json') ?? false;
@@ -46,6 +51,9 @@ export const POST: APIRoute = async ({ request, clientAddress, url }) => {
   const payload: Record<string, unknown> = contentType.includes('application/json')
     ? await request.json().catch(() => ({}))
     : Object.fromEntries(await request.formData());
+
+  const lang: Locale = isLocale(payload.lang as string | undefined) ? (payload.lang as Locale) : 'nl';
+  const bijnaKlaarPath = localePath(lang, '/bijna-klaar');
 
   const respond = (status: number, body: Record<string, unknown>, redirect?: string) => {
     if (!wantsJson && redirect) {
@@ -59,17 +67,17 @@ export const POST: APIRoute = async ({ request, clientAddress, url }) => {
 
   const { isBot } = await checkBotId();
   if (isBot) {
-    return respond(403, { error: 'Toegang geweigerd.' });
+    return respond(403, { error: 'BOT_DETECTED' });
   }
 
   // Spamval en invultijd
   if (typeof payload.website === 'string' && payload.website.trim() !== '') {
-    return respond(200, { ok: true }, '/bijna-klaar');
+    return respond(200, { ok: true }, bijnaKlaarPath);
   }
 
   const renderedAt = Number(payload.renderedAt);
   if (Number.isFinite(renderedAt) && renderedAt > 0 && Date.now() - renderedAt < MIN_FILL_MS) {
-    return respond(400, { error: 'Dat ging wel erg snel. Probeer het nog eens.' });
+    return respond(400, { error: 'TOO_FAST' });
   }
 
   const name = String(payload.name ?? '').trim();
@@ -79,14 +87,14 @@ export const POST: APIRoute = async ({ request, clientAddress, url }) => {
   const newsletter = payload.newsletter === 'ja' || payload.newsletter === true;
 
   if (name.length < 2 || name.length > 120) {
-    return respond(400, { error: 'Vul een naam in.' });
+    return respond(400, { error: 'INVALID_NAME' });
   }
   if (!EMAIL.test(email) || email.length > 200) {
-    return respond(400, { error: 'Dit e-mailadres klopt niet.' });
+    return respond(400, { error: 'INVALID_EMAIL' });
   }
 
   if (rateLimited(clientAddress ?? 'onbekend')) {
-    return respond(429, { error: 'Te veel pogingen. Wacht een minuut.' });
+    return respond(429, { error: 'RATE_LIMITED' });
   }
 
   const db = supabase();
@@ -99,7 +107,7 @@ export const POST: APIRoute = async ({ request, clientAddress, url }) => {
     .maybeSingle();
 
   if (existing?.confirmed_at) {
-    return respond(200, { ok: true, already: true }, '/bijna-klaar');
+    return respond(200, { ok: true, already: true }, bijnaKlaarPath);
   }
 
   const record = {
@@ -117,18 +125,18 @@ export const POST: APIRoute = async ({ request, clientAddress, url }) => {
 
   if (error) {
     console.error('Opslaan mislukt', error);
-    return respond(500, { error: 'Opslaan lukte niet. Probeer het zo nog eens.' });
+    return respond(500, { error: 'SAVE_FAILED' });
   }
 
   const base = import.meta.env.PUBLIC_SITE_URL ?? url.origin;
-  const confirmUrl = `${base.replace(/\/$/, '')}/api/confirm?token=${confirmToken}`;
+  const confirmUrl = `${base.replace(/\/$/, '')}/api/confirm?token=${confirmToken}&lang=${lang}`;
 
   try {
-    await sendConfirmationMail({ to: email, name, confirmUrl });
+    await sendConfirmationMail({ to: email, name, confirmUrl, lang });
   } catch (mailError) {
     console.error('Mail versturen mislukt', mailError);
-    return respond(500, { error: 'De bevestigingsmail kwam niet weg. Probeer het zo nog eens.' });
+    return respond(500, { error: 'MAIL_FAILED' });
   }
 
-  return respond(200, { ok: true }, '/bijna-klaar');
+  return respond(200, { ok: true }, bijnaKlaarPath);
 };

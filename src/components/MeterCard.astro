@@ -1,30 +1,30 @@
 ---
-const rows = [
-  { dot: 'bg-accent-soft', label: '15 tekstvragen', value: '0,01 kWh (0,3%)' },
-  { dot: 'bg-accent-mid', label: '3 flyerafbeeldingen', value: '0,15 kWh (5%)' },
-  { dot: 'bg-accent', label: '1 video van 5 seconden', value: '2,74 kWh (95%)' },
-];
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div
   class="max-w-[640px] rounded-md border border-line bg-card p-[clamp(20px,3.4vw,32px)]"
 >
   <div class="mb-5 flex flex-wrap items-baseline justify-between gap-3">
-    <span class="label-caps text-ink">Gespreksverbruik</span>
-    <span class="text-[13px] text-muted">24 berichten · sinds 20:02</span>
+    <span class="label-caps text-ink">{t.meterCard.label}</span>
+    <span class="text-[13px] text-muted">{t.meterCard.meta}</span>
   </div>
 
   <div class="mb-1.5 flex items-baseline gap-2.5">
-    <span class="text-[clamp(38px,7vw,52px)] leading-none font-bold text-accent">2,9</span>
-    <span class="text-[18px] font-semibold text-accent">kWh</span>
+    <span class="text-[clamp(38px,7vw,52px)] leading-none font-bold text-accent">
+      {t.meterCard.total}
+    </span>
+    <span class="text-[18px] font-semibold text-accent">{t.meterCard.unit}</span>
   </div>
-  <p class="mt-0 mb-[18px] text-[14px] text-muted">deze avond, tot nu toe</p>
+  <p class="mt-0 mb-[18px] text-[14px] text-muted">{t.meterCard.caption}</p>
 
   <div class="mb-[22px] flex flex-col gap-2.5">
     {
-      rows.map((row) => (
+      t.meterCard.rows.map((row, index) => (
         <div class="flex items-center gap-2.5 text-[15px]">
-          <span class={`h-[9px] w-[9px] shrink-0 ${row.dot}`} />
+          <span class={`h-[9px] w-[9px] shrink-0 ${['bg-accent-soft', 'bg-accent-mid', 'bg-accent'][index]}`} />
           <span class="flex-1">{row.label}</span>
           <span class="text-[14px] text-muted">{row.value}</span>
         </div>
@@ -32,7 +32,7 @@ const rows = [
     }
   </div>
 
-  <p class="mt-0 mb-3 text-[13px] tracking-[0.02em] text-muted">Ongeveer gelijk aan</p>
+  <p class="mt-0 mb-3 text-[13px] tracking-[0.02em] text-muted">{t.meterCard.comparisonLabel}</p>
   <div class="flex flex-wrap gap-2.5">
     <div class="min-w-[140px] flex-1 rounded-[5px] bg-paper p-3.5">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F6B47" stroke-width="1.6" aria-hidden="true">
@@ -41,8 +41,8 @@ const rows = [
         <circle cx="12" cy="13" r="1.4"></circle>
         <line x1="8" y1="6" x2="10" y2="6"></line>
       </svg>
-      <div class="mt-2.5 mb-0.5 text-[22px] font-bold">3×</div>
-      <div class="text-[13px] text-muted">wasmachine op 40°C</div>
+      <div class="mt-2.5 mb-0.5 text-[22px] font-bold">{t.meterCard.comparisons[0].value}</div>
+      <div class="text-[13px] text-muted">{t.meterCard.comparisons[0].label}</div>
     </div>
     <div class="min-w-[140px] flex-1 rounded-[5px] bg-paper p-3.5">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F6B47" stroke-width="1.6" aria-hidden="true">
@@ -51,8 +51,8 @@ const rows = [
         <circle cx="7.5" cy="20" r="1.3"></circle>
         <circle cx="16.5" cy="20" r="1.3"></circle>
       </svg>
-      <div class="mt-2.5 mb-0.5 text-[22px] font-bold">15 km</div>
-      <div class="text-[13px] text-muted">rijden, elektrische auto</div>
+      <div class="mt-2.5 mb-0.5 text-[22px] font-bold">{t.meterCard.comparisons[1].value}</div>
+      <div class="text-[13px] text-muted">{t.meterCard.comparisons[1].label}</div>
     </div>
     <div class="min-w-[140px] flex-1 rounded-[5px] bg-paper p-3.5">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F6B47" stroke-width="1.6" aria-hidden="true">
@@ -61,8 +61,8 @@ const rows = [
         <line x1="9" y1="5" x2="9" y2="7"></line>
         <line x1="9" y1="13" x2="9" y2="15"></line>
       </svg>
-      <div class="mt-2.5 mb-0.5 text-[22px] font-bold">2 dagen</div>
-      <div class="text-[13px] text-muted">koelkast aan</div>
+      <div class="mt-2.5 mb-0.5 text-[22px] font-bold">{t.meterCard.comparisons[2].value}</div>
+      <div class="text-[13px] text-muted">{t.meterCard.comparisons[2].label}</div>
     </div>
   </div>
 </div>

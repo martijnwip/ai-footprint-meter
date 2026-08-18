@@ -1,26 +1,25 @@
 ---
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
+
 const sum = [
-  { type: 'term', text: '15 vragen' },
+  { type: 'term', text: t.eveningSum.sumTerms[0] },
   { type: 'op', text: '+' },
-  { type: 'term', text: '10 pogingen voor een afbeelding' },
+  { type: 'term', text: t.eveningSum.sumTerms[1] },
   { type: 'op', text: '+' },
-  { type: 'term', text: '3 pogingen voor een filmpje van 5 sec' },
+  { type: 'term', text: t.eveningSum.sumTerms[2] },
   { type: 'op', text: '=' },
 ];
 ---
 
-<section aria-label="Eén avond" class="section-wrap pb-7">
-  <p class="mt-9 mb-4 text-[26px] font-semibold text-ink">Voorbeeld:</p>
+<section aria-label={t.eveningSum.ariaLabel} class="section-wrap pb-7">
+  <p class="mt-9 mb-4 text-[26px] font-semibold text-ink">{t.eveningSum.heading}</p>
   <p class="mt-0 mb-[8px] body-text">
-    Stel iemand wil meedoen aan de halve marathon en zoekt sponsors.
+    {t.eveningSum.intro}
   </p>
   <ol class="mt-0 mb-10 list-decimal space-y-[8px] pl-5 body-text">
-    <li>
-      Vijftien vragen aan de chatbot: hoe je sponsors benadert, wat een realistisch streefbedrag
-      is, hoe je een appje schrijft dat mensen niet wegklikken.
-    </li>
-    <li>Dan de flyer. Drie afbeeldingen voordat er een versie is die goed genoeg is.</li>
-    <li>En tot slot één filmpje van vijf seconden voor Instagram.</li>
+    {t.eveningSum.steps.map((step) => <li>{step}</li>)}
   </ol>
 
   <div class="flex flex-col items-start">
@@ -36,17 +35,17 @@ const sum = [
     <div
       class="my-1 text-[clamp(34px,6vw,52px)] leading-[1.15] font-bold tracking-[-0.01em] text-accent"
     >
-      2,9 kilowattuur
+      {t.eveningSum.sumResult}
     </div>
     <div class="my-1.5 text-[19px] text-muted">=</div>
-    <div class="text-[26px] leading-[1.25] font-bold text-ink">3x wasbeurten op 40 graden.</div>
+    <div class="text-[26px] leading-[1.25] font-bold text-ink">{t.eveningSum.sumConclusion}</div>
   </div>
 
   <p class="mt-5 mb-0 text-[14px] text-muted">
-    Bron: <a
+    {t.eveningSum.sourcePrefix}<a
       href="https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/"
       target="_blank"
-      rel="noopener">MIT technologyreview.com</a
+      rel="noopener">{t.eveningSum.sourceLabel}</a
     >
   </p>
 </section>

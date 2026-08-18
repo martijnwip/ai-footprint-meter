@@ -1,7 +1,7 @@
 ---
-import Base from '../layouts/Base.astro';
-import StickyBar from '../components/StickyBar.astro';
-import { useTranslations, getLocalizedPath, isLocale } from '../i18n/utils';
+import Base from '../../layouts/Base.astro';
+import StickyBar from '../../components/StickyBar.astro';
+import { useTranslations, getLocalizedPath, isLocale } from '../../i18n/utils';
 
 const t = useTranslations(Astro.currentLocale);
 const currentLocale = isLocale(Astro.currentLocale) ? Astro.currentLocale : 'nl';

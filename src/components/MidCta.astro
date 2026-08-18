@@ -1,21 +1,23 @@
 ---
 import { formatCount } from '../lib/count';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
   count: number;
 }
 const { count } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
 ---
 
-<section aria-label="Tussen-CTA" class="section-wrap py-[clamp(48px,8vw,80px)] text-left">
+<section aria-label={t.midCta.ariaLabel} class="section-wrap py-[clamp(48px,8vw,80px)] text-left">
   <p class="mt-0 mb-7 max-w-[66ch] text-[25px] leading-[1.34] font-bold">
-    Wij vragen de EU om AI-aanbieders te verplichten het energieverbruik van elk chat te tonen.
+    {t.midCta.heading}
   </p>
 
-  <a href="#tekenen" class="btn-dark hover:bg-ink-hover hover:text-paper">Teken de oproep</a>
+  <a href="#tekenen" class="btn-dark hover:bg-ink-hover hover:text-paper">{t.midCta.cta}</a>
 
   {/* Verborgen zolang de teller nog op nul staat; het script haalt hem daarna op. */}
   <p class="mt-4 mb-0 text-[14px] text-muted" data-count-line hidden={count === 0}>
-    <span data-signature-count>{formatCount(count)}</span> mensen gingen je voor
+    <span data-signature-count>{formatCount(count, Astro.currentLocale)}</span> {t.midCta.countSuffix}
   </p>
 </section>
