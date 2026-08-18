@@ -9,29 +9,28 @@ const rows = [
 <section aria-label="In de chat zelf" class="hero-wrap pb-[clamp(56px,10vw,96px)]">
   <p class="mt-0 mb-[18px] text-[14px] text-muted">Voorbeeld vanuit de Chat zelf</p>
 
-  <div class="overflow-x-auto">
+  <div class="flex h-[600px] overflow-hidden rounded-lg border border-line bg-card">
+    <!-- Zijbalk -->
     <div
-      class="flex h-[600px] min-w-[760px] overflow-hidden rounded-lg border border-line bg-card"
+      class="hidden w-[190px] shrink-0 flex-col border-r border-line px-4 py-5 min-[720px]:flex"
     >
-      <!-- Zijbalk -->
-      <div class="flex w-[190px] shrink-0 flex-col border-r border-line px-4 py-5">
-        <div class="mb-[18px] text-[15px] font-bold">verda</div>
-        <div class="mb-5 rounded-[5px] bg-ink px-3 py-[9px] text-[13px] font-semibold text-paper">
-          + Nieuwe chat
-        </div>
-        <div class="mb-2.5 text-[11px] tracking-[0.1em] text-muted uppercase">Recent</div>
-        <div class="mb-1.5 rounded-[5px] bg-paper px-2.5 py-2">
-          <div class="text-[13px] font-semibold">Sponsoractie halve marathon</div>
-          <div class="mt-0.5 text-[12px] text-accent">2,9 kWh</div>
-        </div>
-        <div class="px-2.5 py-2">
-          <div class="text-[13px] text-ink">Teamuitje ideeën</div>
-          <div class="mt-0.5 text-[12px] text-muted">0,4 kWh</div>
-        </div>
+      <div class="mb-[18px] text-[15px] font-bold">verda</div>
+      <div class="mb-5 rounded-[5px] bg-ink px-3 py-[9px] text-[13px] font-semibold text-paper">
+        + Nieuwe chat
       </div>
+      <div class="mb-2.5 text-[11px] tracking-[0.1em] text-muted uppercase">Recent</div>
+      <div class="mb-1.5 rounded-[5px] bg-paper px-2.5 py-2">
+        <div class="text-[13px] font-semibold">Sponsoractie halve marathon</div>
+        <div class="mt-0.5 text-[12px] text-accent">2,9 kWh</div>
+      </div>
+      <div class="px-2.5 py-2">
+        <div class="text-[13px] text-ink">Teamuitje ideeën</div>
+        <div class="mt-0.5 text-[12px] text-muted">0,4 kWh</div>
+      </div>
+    </div>
 
-      <!-- Gesprek -->
-      <div class="flex-1 overflow-y-auto px-7 py-6">
+    <!-- Gesprek -->
+    <div class="flex-1 overflow-y-auto px-4 py-5 min-[720px]:px-7 min-[720px]:py-6">
         <div class="mb-[18px] flex justify-end">
           <div
             class="max-w-[340px] rounded-md bg-ink px-3.5 py-2.5 text-[14px] leading-normal text-paper"
@@ -82,5 +81,4 @@ const rows = [
         </div>
       </div>
     </div>
-  </div>
 </section>
