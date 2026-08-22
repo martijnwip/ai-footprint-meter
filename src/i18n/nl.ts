@@ -13,7 +13,7 @@ export interface SourceItem {
 
 export interface Dictionary {
   html: { lang: string; ogLocale: string; skipLink: string };
-  footer: { initiativeBy: string };
+  footer: { initiativeBy: string; qrCaption: string };
   cookieBadge: { message: string; dismissAria: string };
   stickyBar: { brand: string };
   seo: {
@@ -185,7 +185,7 @@ export interface Dictionary {
 
 const nl: Dictionary = {
   html: { lang: 'nl', ogLocale: 'nl_NL', skipLink: 'Naar de inhoud' },
-  footer: { initiativeBy: 'Initiatief van' },
+  footer: { initiativeBy: 'Initiatief van', qrCaption: 'Scan om de oproep te delen' },
   cookieBadge: { message: 'Dit is een cookie-vrije omgeving.', dismissAria: 'Melding sluiten' },
   stickyBar: { brand: 'The AI Footprint Meter' },
   seo: {

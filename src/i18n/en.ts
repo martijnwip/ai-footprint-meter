@@ -2,7 +2,7 @@ import type { Dictionary } from './nl';
 
 const en: Dictionary = {
   html: { lang: 'en', ogLocale: 'en_US', skipLink: 'Skip to content' },
-  footer: { initiativeBy: 'An initiative by' },
+  footer: { initiativeBy: 'An initiative by', qrCaption: 'Scan to share the call' },
   cookieBadge: { message: 'This is a cookie-free area.', dismissAria: 'Dismiss notice' },
   stickyBar: { brand: 'The AI Footprint Meter' },
   seo: {
