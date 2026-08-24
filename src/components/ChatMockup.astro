@@ -55,28 +55,59 @@ const t = useTranslations(Astro.currentLocale);
           </div>
         </div>
 
-        <div class="max-w-[420px] rounded-md border border-line p-5">
-          <div class="mb-4 flex flex-wrap items-baseline justify-between gap-3">
-            <span class="text-[11px] font-bold tracking-[0.13em] uppercase">{t.chatMockup.statLabel}</span>
-            <span class="text-[12px] text-muted">{t.chatMockup.statMeta}</span>
+        <details class="group max-w-[420px]" open>
+          <summary class="flex w-fit cursor-pointer list-none items-center gap-2.5 [&::-webkit-details-marker]:hidden">
+            <span class="flex h-7 w-7 shrink-0 items-center justify-center text-muted" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="8" y="8" width="12" height="12" rx="1.5"></rect>
+                <path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"></path>
+              </svg>
+            </span>
+            <span class="flex h-7 w-7 shrink-0 items-center justify-center text-muted" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 12a9 9 0 1 1 2.6 6.3"></path>
+                <polyline points="3 17 3 12 8 12"></polyline>
+              </svg>
+            </span>
+            <span class="flex items-center gap-1.5 rounded-full border border-line px-3.5 py-[7px] text-[13px] font-semibold">
+              {t.chatMockup.statLabel}
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                class="transition-transform duration-200 group-open:rotate-180"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </summary>
+
+          <div class="mt-4 rounded-md border border-line p-5">
+            <div class="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+              <span class="text-[11px] font-bold tracking-[0.13em] uppercase">{t.chatMockup.statLabel}</span>
+              <span class="text-[12px] text-muted">{t.chatMockup.statMeta}</span>
+            </div>
+            <div class="mb-3.5 flex items-baseline gap-2">
+              <span class="text-[34px] leading-none font-bold text-accent">{t.meterCard.total}</span>
+              <span class="text-[15px] font-semibold text-accent">{t.meterCard.unit}</span>
+            </div>
+            <div class="mb-4 flex flex-col gap-2">
+              {
+                t.chatMockup.rows.map((row, index) => (
+                  <div class="flex items-center gap-2 text-[13px]">
+                    <span class={`h-2 w-2 shrink-0 ${['bg-accent-soft', 'bg-accent-mid', 'bg-accent'][index]}`} />
+                    <span class="flex-1">{row.label}</span>
+                    <span class="text-muted">{row.value}</span>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="border-t border-line pt-3 text-[13px]">{t.chatMockup.sustainabilityNote}</div>
           </div>
-          <div class="mb-3.5 flex items-baseline gap-2">
-            <span class="text-[34px] leading-none font-bold text-accent">{t.meterCard.total}</span>
-            <span class="text-[15px] font-semibold text-accent">{t.meterCard.unit}</span>
-          </div>
-          <div class="mb-4 flex flex-col gap-2">
-            {
-              t.chatMockup.rows.map((row, index) => (
-                <div class="flex items-center gap-2 text-[13px]">
-                  <span class={`h-2 w-2 shrink-0 ${['bg-accent-soft', 'bg-accent-mid', 'bg-accent'][index]}`} />
-                  <span class="flex-1">{row.label}</span>
-                  <span class="text-muted">{row.value}</span>
-                </div>
-              ))
-            }
-          </div>
-          <div class="border-t border-line pt-3 text-[13px]">{t.chatMockup.sustainabilityNote}</div>
-        </div>
+        </details>
       </div>
     </div>
 </section>
