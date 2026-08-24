@@ -3,13 +3,15 @@
 // In het ontwerp is dit een label; hier is het een link naar het formulier,
 // zodat de vaste balk ook iets doet.
 import { useTranslations } from '../i18n/utils';
+import Logo from './Logo.astro';
 
 const t = useTranslations(Astro.currentLocale);
 ---
 
 <a
   href="#tekenen"
-  class="fixed z-20 rounded-md bg-ink px-[18px] py-[10px] text-center text-[13px] font-semibold tracking-[0.02em] whitespace-nowrap text-paper no-underline shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:bg-ink-hover hover:text-paper right-4 bottom-4 left-4 min-[720px]:top-5 min-[720px]:right-5 min-[720px]:bottom-auto min-[720px]:left-auto min-[720px]:rounded min-[720px]:text-left"
+  class="fixed z-20 inline-flex items-center gap-2 rounded-md bg-ink px-[18px] py-[10px] text-center text-[13px] font-semibold tracking-[0.02em] whitespace-nowrap text-paper no-underline shadow-[0_2px_10px_rgba(0,0,0,0.12)] hover:bg-ink-hover hover:text-paper right-4 bottom-4 left-4 min-[720px]:top-5 min-[720px]:right-5 min-[720px]:bottom-auto min-[720px]:left-auto min-[720px]:rounded min-[720px]:text-left"
 >
+  <Logo size={22} theme="paper" />
   {t.stickyBar.brand}
 </a>

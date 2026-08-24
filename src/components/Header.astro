@@ -1,11 +1,18 @@
 ---
-import { locales, getLocalizedPath } from '../i18n/utils';
+import { locales, getLocalizedPath, useTranslations, type Locale } from '../i18n/utils';
+import Logo from './Logo.astro';
 
-const current = Astro.currentLocale ?? 'nl';
+const current = (Astro.currentLocale ?? 'nl') as Locale;
 const pathname = Astro.url.pathname;
+const t = useTranslations(Astro.currentLocale);
 ---
 
-<header class="section-wrap flex flex-wrap gap-4 py-3 text-[13px]">
+<header class="section-wrap flex flex-wrap items-center justify-between gap-4 py-3 text-[13px]">
+  <a href={getLocalizedPath('/', current, current)} class="inline-flex items-center gap-2 font-semibold text-ink no-underline">
+    <Logo size={28} />
+    {t.stickyBar.brand}
+  </a>
+  <div class="flex flex-wrap gap-4">
   {
     locales.map((locale) =>
       locale.code === current ? (
@@ -24,4 +31,5 @@ const pathname = Astro.url.pathname;
       ),
     )
   }
+  </div>
 </header>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  size?: number;
+  theme?: 'ink' | 'paper';
+  reduced?: boolean;
+  class?: string;
+}
+
+const { size = 32, theme = 'ink', reduced = false, class: className } = Astro.props;
+
+const stroke = theme === 'paper' ? '#FAF9F5' : '#1C1C1A';
+const accent = theme === 'paper' ? '#7FA07E' : '#3F6B47';
+const width = reduced ? size : Math.round(size * (34 / 39));
+---
+
+{
+  reduced ? (
+    <svg width={width} height={size} viewBox="0 0 32 32" fill="none" class={className} aria-hidden="true">
+      <line x1="16" y1="3" x2="16" y2="29" stroke={stroke} stroke-width="3"></line>
+      <rect x="1" y="11" width="11" height="10" fill={accent}></rect>
+      <path d="M20 11 H26 A5 5 0 0 1 26 21 H20 Z" fill={accent}></path>
+    </svg>
+  ) : (
+    <svg width={width} height={size} viewBox="4 2 34 39" fill="none" class={className} aria-hidden="true">
+      <g transform="translate(15.52,0.14) scale(0.62)" stroke={stroke} stroke-width="2.6" fill="none" stroke-linecap="round">
+        <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+        <circle cx="12" cy="13" r="5"></circle>
+        <circle cx="12" cy="13" r="1.4"></circle>
+        <line x1="8" y1="6" x2="10" y2="6"></line>
+      </g>
+      <line x1="23" y1="14" x2="23" y2="41" stroke={stroke} stroke-width="2.4"></line>
+      <rect x="4" y="22" width="16" height="10" fill={accent}></rect>
+      <path d="M26 22 H33 A5 5 0 0 1 33 32 H26 Z" fill={accent}></path>
+    </svg>
+  )
+}
