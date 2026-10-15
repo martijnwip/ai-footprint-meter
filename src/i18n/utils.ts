@@ -19,7 +19,7 @@ export type Locale = (typeof locales)[number]['code'];
 const dictionaries: Record<Locale, Dictionary> = { nl, en, de, fr, es };
 
 export function isLocale(value: string | undefined): value is Locale {
-  return !!value && value in dictionaries;
+  return !!value && Object.hasOwn(dictionaries, value);
 }
 
 export function useTranslations(locale: string | undefined): Dictionary {
