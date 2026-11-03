@@ -1,8 +1,9 @@
 ---
-import { useTranslations } from '../i18n/utils';
+import { useTranslations, getLocalizedPath, isLocale } from '../i18n/utils';
 
 const t = useTranslations(Astro.currentLocale);
 const locale = Astro.currentLocale ?? 'nl';
+const privacyHref = getLocalizedPath('/privacy', locale, isLocale(locale) ? locale : 'nl');
 ---
 
 <section id="tekenen" aria-label={t.signForm.heading} class="section-wrap scroll-mt-6 py-[clamp(56px,10vw,96px)]">
@@ -71,7 +72,7 @@ const locale = Astro.currentLocale ?? 'nl';
       </button>
 
       <p class="m-0 text-[14px] leading-[1.5] text-muted">
-        {t.signForm.privacyPrefix} <a href="/privacy" class="text-[14px]">{t.signForm.privacyLink}</a>
+        {t.signForm.privacyPrefix} <a href={privacyHref} class="text-[14px]">{t.signForm.privacyLink}</a>
       </p>
     </form>
   </div>
