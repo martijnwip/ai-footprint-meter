@@ -10,9 +10,9 @@ waaruit het ontwerp komt en wordt niet gepubliceerd. De tekst volgt het ontwerp,
 ## Snel starten
 
 ```bash
-npm install
+bun install
 cp .env.example .env      # vul de waarden in
-npm run dev               # http://localhost:4321
+bun run dev               # http://localhost:4321
 ```
 
 Zonder `.env` draait de pagina gewoon: de teller blijft dan verborgen en het formulier
